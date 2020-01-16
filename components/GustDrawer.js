@@ -19,7 +19,7 @@ const GustDrawer = ({navigation}) => {
         </ScrollView>
 
         <View>
-            <Button title="logout" />
+            <Button title="logout" onPress={() => navigation.navigate('auth')} />
         </View>
         
       </SafeAreaView>

@@ -7,7 +7,7 @@ import AuthHeader from './AuthHeader';
 import countries from '../../countries.js';
 import LogoPicture from '../../images/gustlogo.jpg'
 
-const SignUp = () => {
+const SignUp = ({navigation}) => {
 
     const [user, setUser] = useState({
         firstName: null,
@@ -42,7 +42,7 @@ const SignUp = () => {
     return(
     <View style={{flex: 1}}>
         <AuthHeader />
-        <View style={{top: 15}}>
+        <View style={{top: 15, justifyContent: 'center', alignItems: 'center'}}>
         { nextPress ? 
         <>
             <View style={{position: 'absolute', top: -100, alignSelf: 'center'}}>
@@ -67,8 +67,8 @@ const SignUp = () => {
 
             </View> 
 
-            <View>
-                <Button title="SUBMIT!" buttonStyle={{borderRadius: 10, borderWidth: 1, borderColor: '#2FA8F8', padding: 5}} onPress={handleSubmit} />
+            <View style={{top: -20}}>
+                <Button title="SUBMIT!" buttonStyle={{borderRadius: 10, borderWidth: 1, borderColor: '#2FA8F8', padding: 5}} onPress={() => navigation.navigate('app')} />
             </View>
         </>
         
@@ -86,9 +86,16 @@ const SignUp = () => {
             <View style={{flexDirection: 'column', top: -300, zIndex: 2}}>
                 <Button title="next" onPress={handleNextPress} />
             </View>
-            <View style={{position: 'absolute', top: -160, alignSelf: 'center'}}>
-                <Image source={LogoPicture} style={{resizeMode: 'contain', width: 180, height: 180}} />
+
+            <View style={{position: 'absolute', top: -100,  alignSelf: 'center'}}>
+                <Image source={LogoPicture} style={{resizeMode: 'contain', width: 150, height: 150}} />
             </View>
+
+            <View style={{top: -50}}>
+                <Button title="already have an account?" onPress={() => navigation.navigate('Login')} />
+            </View>
+
+            
         </>
         }
         </View> 

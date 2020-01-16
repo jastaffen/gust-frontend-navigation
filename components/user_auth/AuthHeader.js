@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native'
 const AuthHeader = () => {
 
     return(
-        <View style={{flex: 1, top: 20}} >
+        <View style={{flex: 1, top: 80}} >
             <Text style={headerStyles.sloganText}>FOR THE REAL FANS</Text>
             <Text style={headerStyles.mainText}>GUST</Text>
         </View>
