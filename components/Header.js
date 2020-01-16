@@ -33,7 +33,7 @@ export default Header;
 const styles = StyleSheet.create({
     homePageHeaderContainer: {
         flexDirection: 'row',
-        // top: 20,
+        top: 20,
         justifyContent: 'space-between',
         alignItems: 'center',
     },
