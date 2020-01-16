@@ -1,12 +1,14 @@
 //React
 import React, {useState} from 'react';
-import { View, TextInput, TouchableHighlight, Text, Alert, Image } from 'react-native';
+import { View, TextInput, Alert, Image, Button, Text } from 'react-native';
 //Components
 import AuthHeader from './AuthHeader';
-//Imports
+//Images
 import LogoPicture from '../../images/gustlogo.jpg';
+//Stylesheet
+import { styles } from '../../stylesheet';
 
-const Login = () => {
+const Login = ({navigation}) => {
     
     const [user, setUser] = useState({
         username: null,
@@ -27,18 +29,18 @@ const Login = () => {
 
         <AuthHeader />
 
-        <View style={{flex: 1}}>
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
 
-            <TextInput autoCapitalize='none' textContentType="username" placeholder="username" onChangeText={(e) => setUser({...user, username: e.trim()})} onSubmitEditing={handleLoginSubmit} />
-            <TextInput autoCapitalize='none' secureTextEntry={true} placeholder="password" onChangeText={(e) => setUser({...user, password: e.trim()})} onSubmitEditing={handleLoginSubmit} />
+            <TextInput style={styles.input} autoCapitalize='none' textContentType="username" placeholder="username" onChangeText={(e) => setUser({...user, username: e.trim()})} onSubmitEditing={handleLoginSubmit} />
+            <TextInput style={styles.input} autoCapitalize='none' secureTextEntry={true} placeholder="password" onChangeText={(e) => setUser({...user, password: e.trim()})} onSubmitEditing={handleLoginSubmit} />
 
-            {/* <TouchableHighlight style={{alignSelf: 'center', margin: 2}} onPress={handleLoginSubmit}>
-                <Text style={{color: '#3C65D7', fontSize: 15}}>Submit</Text>
-            </TouchableHighlight> */}
-
+            
+            <Button color={'#106AA1'} style={styles.button} title="Log In!" onPress={() => navigation.navigate('app')} />
+            <Button title="don't have an account?" onPress={() => navigation.navigate('SignUp')} />
+            
         </View>
 
-        <View style={{alignSelf: 'center'}}>
+        <View style={{top: -20, alignSelf: 'center'}}>
             <Image source={LogoPicture} style={{resizeMode: 'contain', width: 180, height: 180}} />
         </View>
 
