@@ -101,11 +101,13 @@ const MainTabs = createBottomTabNavigator({
   })
 
   const MainApp = createSwitchNavigator(
+
     {
     app: AppDrawer,
     auth: AuthStack
     },
     { initialRouteName: 'auth'}
+    
   )
 
 export default createAppContainer(MainApp);
