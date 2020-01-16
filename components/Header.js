@@ -8,13 +8,13 @@ let height = Dimensions.get('window').height;
 import LogoPicture from '../images/gustlogo.jpg'
 
 
-const Header = () => {
+const Header = ({navigation}) => {
 
     return (
 
         <View style={styles.homePageHeaderContainer}>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.openDrawer()}>
 
                 <Image source={LogoPicture} style={{resizeMode: 'contain', width: 50, height: 50, left: 5}}/>
 
@@ -33,7 +33,7 @@ export default Header;
 const styles = StyleSheet.create({
     homePageHeaderContainer: {
         flexDirection: 'row',
-        top: 20,
+        // top: 20,
         justifyContent: 'space-between',
         alignItems: 'center',
     },
