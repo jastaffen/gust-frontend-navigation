@@ -10,7 +10,8 @@ const HomePage = ({navigation}) => {
     return(
         
       <View style={{flex: 1}}>
-        <Header />
+
+        <Header navigation={navigation} />
 
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
 
