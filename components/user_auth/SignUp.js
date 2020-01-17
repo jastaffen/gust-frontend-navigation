@@ -4,8 +4,9 @@ import { View, TextInput, Text, Picker, StyleSheet, Button, Alert, Image } from 
 //Components
 import AuthHeader from './AuthHeader';
 //Imports
-import countries from '../../countries.js';
-import LogoPicture from '../../images/gustlogo.jpg'
+import countries from '../../constants/countries.js';
+import LogoPicture from '../../images/gustlogo.jpg';
+import * as requests from '../../requests';
 
 const SignUp = ({navigation}) => {
 
@@ -15,6 +16,8 @@ const SignUp = ({navigation}) => {
         username: null,
         password: null
     });
+
+    const [userData, setUserData] = useState(null)
 
     const [nextPress, setNextPress] = useState(false);
 
@@ -31,15 +34,29 @@ const SignUp = ({navigation}) => {
 
     const handleSubmit = () => {
         if (city) {
-            console.log(city)
-            // setUserInfo(user, city, country)
+            requests.signUp(user, city, country)
+            .then(obj => {
+                if (obj.error) {
+                    Alert.alert(obj.error)
+                } else {
+                    Alert.alert(`${obj.user.firstName}! Your account has been successfully created!`)
+                    setUserData({
+                    firstName: obj.user.firstName,
+                    lastName: obj.user.lastName,
+                    username: obj.user.username,
+                    city: obj.user.city,
+                    country: obj.user.country,
+                    jwt: obj.jwt})
+                    navigation.navigate('app', {userData: userData})
+                }
+            })
         } else {
             Alert.alert('Please select a city')
-        }
-        
+        } 
     }
 
     return(
+
     <View style={{flex: 1}}>
         <AuthHeader />
         <View style={{top: 15, justifyContent: 'center', alignItems: 'center'}}>
@@ -68,7 +85,7 @@ const SignUp = ({navigation}) => {
             </View> 
 
             <View style={{top: -20}}>
-                <Button title="SUBMIT!" buttonStyle={{borderRadius: 10, borderWidth: 1, borderColor: '#2FA8F8', padding: 5}} onPress={() => navigation.navigate('app')} />
+                <Button title="SUBMIT!" buttonStyle={{borderRadius: 10, borderWidth: 1, borderColor: '#2FA8F8', padding: 5}} onPress={handleSubmit} />
             </View>
         </>
         

@@ -8,7 +8,7 @@ const ArtistPage = ({navigation}) => {
 
     return(
         <View style={{flex: 1}}>
-            <Header />
+            <Header navigation={navigation} />
             <View style={{flex: 1, justifyContent: 'center', alignContent: 'center'}}>
                 <Text style={{fontSize: 40, color: 'blue'}}>Hi</Text>
                 <Button title="Submit Artist" />
