@@ -13,7 +13,7 @@ const FollowedArtistContainer = ({navigation}) => {
         <Header navigation={navigation} />
 
         <View style={{flex: 1, justifyContent: 'center', alignContent: 'center', alignItems: 'center'}}>
-            <Text style={{color: 'blue', fontSize: 40}}>Hi</Text>
+            <Button title="Beyonce" style={{color: 'blue', fontSize: 40}} onPress={() => navigation.navigate('ArtistPage')} />
         </View>
     
     </View>
