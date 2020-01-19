@@ -4,7 +4,7 @@ import { View, Text, Button, TextInput } from 'react-native'
 import { connect } from 'react-redux';
 //Components
 import Header from '../components/Header';
-import SearchArtist from '../components/SearchArtist';
+import SearchArtist from '../components/artists/SearchArtist';
 //imports
 import { getSpotifyToken } from '../requests';
 
@@ -20,7 +20,7 @@ const HomePage = ({navigation, setSpotifyToken}) => {
         
       <View style={{flex: 1}}>
 
-        <Header navigation={navigation} />
+        <Header navigation={navigation} isHome={true} />
 
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
 

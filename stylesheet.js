@@ -45,8 +45,8 @@ export const styles = StyleSheet.create({
     },
     searchButton: {
         color: '#2FA8F8', 
-        fontSize: 16, 
-        fontWeight: 'bold', 
+        fontSize: 15, 
+        // fontWeight: 'bold', 
         borderWidth: 1, 
         borderColor: '#2FA8F8', 
         padding: 8, 
@@ -58,28 +58,28 @@ export const styles = StyleSheet.create({
     },
     dymArtistText: {
         color: 'white',
-        fontWeight: 'bold',
-        fontSize: 25,
+        // fontWeight: 'bold',
+        fontSize: 35,
         alignSelf: 'center',
         textShadowColor: 'rgba(0, 0, 0, 0.75)',
-        textShadowOffset: {width: -1, height: 1},
+        textShadowOffset: {width: -1, height: 2},
         textShadowRadius: 10
     },
     didYouMean: {
-        color: '#2FA8F8',
-        fontWeight: 'bold',
-        fontSize: 20,
+        color: '#30ACFF',
+        // fontWeight: 'bold',
+        fontSize: 18,
         marginBottom: 20,
-        textAlign: 'center'
+        textAlign: 'center',
     },
     artistName: {
         color: 'white',
-        fontSize: 30,
-        // top: 5,
+        fontSize: 35,
+        top: 25,
         textAlign: 'center',
-        fontWeight: 'bold',
+        // fontWeight: 'bold',
         textShadowColor: 'rgba(0, 0, 0, 0.75)',
-        textShadowOffset: {width: -100, height: 1},
+        textShadowOffset: {width: -1, height: 1},
         textShadowRadius: 10
     },
     albumContainer: {
@@ -91,11 +91,7 @@ export const styles = StyleSheet.create({
     },
     albumCard: {
         alignSelf: 'center',
-        justifyContent: 'center', 
-        borderRadius: 10, 
-        shadowColor: '#000',
-        shadowOffset: { width: 10, height: 10 }, 
-        shadowOpacity: 1, shadowRadius: 10, 
+        justifyContent: 'center',  
         marginHorizontal: 5,
         zIndex: 20
     }

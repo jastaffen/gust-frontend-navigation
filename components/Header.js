@@ -7,19 +7,24 @@ let width = Dimensions.get('window').width;
 let height = Dimensions.get('window').height;
 //Imports
 import LogoPicture from '../images/gustlogo.jpg'
+import GoBack from '../images/gobackthin.png';
 
 
-const Header = ({navigation, firstName}) => {
-    console.log(firstName)
+const Header = ({navigation, firstName, isHome}) => {
+    
     return (
 
         <View style={styles.homePageHeaderContainer}>
 
+            {isHome ? 
             <TouchableOpacity onPress={() => navigation.openDrawer()}>
-
                 <Image source={LogoPicture} style={{resizeMode: 'contain', width: 50, height: 50, left: 5}}/>
-
+            </TouchableOpacity> 
+            : 
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+                <Image source={GoBack}  style={{resizeMode: 'contain', width: 40, height: 40, left: 5}} />
             </TouchableOpacity>
+            }
 
             <Text style={styles.mainText}>GUST</Text>
             <Text style={styles.welcome}>Hi {firstName}</Text>
@@ -53,7 +58,7 @@ const styles = StyleSheet.create({
     welcome: {
         color: '#2FA8F8',
         fontSize: 10,
-        right: 5,
+        right: 10,
         fontWeight: 'bold'
     },
 })

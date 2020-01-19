@@ -35,12 +35,14 @@ const ArtistPage = ({navigation, spotifyToken, selectedArtist, country, loadingS
                             <Text style={styles.artistName}>{selectedArtist.name}</Text>
                     </ImageBackground>
 
-                    <ScrollView horizontal pagingEnabled showsHorizontalScrollIndicator={false} style={{top: -90, zIndex: 20}}>
-                                {!albums ? <AlbumLoadingScreen /> : <AlbumCarousel albums={albums} /> }
-                    </ScrollView>
+                    <SafeAreaView  style={{top: -90, zIndex: 20}}>
+                        {/* <ScrollView horizontal pagingEnabled showsHorizontalScrollIndicator={false} style={{top: -90, zIndex: 20}}> */}
+                            {!albums ? <AlbumLoadingScreen /> : <AlbumCarousel navigation={navigation} albums={albums} spotifyToken={spotifyToken} /> }
+                        {/* </ScrollView> */}
+                    </SafeAreaView>
                     
-
                 </ScrollView>
+
             </SafeAreaView>
 
         </View>
