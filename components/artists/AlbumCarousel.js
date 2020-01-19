@@ -1,29 +1,40 @@
 //React
 import React from 'react';
-import { TouchableHighlight, View, FlatList, Image, ScrollView, SafeAreaView, Dimensions } from 'react-native';
+import { TouchableHighlight, View, FlatList, Image, SafeAreaView, Dimensions } from 'react-native';
+import { connect } from 'react-redux';
 //imports
 import { styles } from '../../stylesheet';
+import { fetchAlbumTracks } from '../../requests';
 //Constants
 const width = Dimensions.get('window').width;
 
-const AlbumCarousel = ({albums}) => {
+const AlbumCarousel = ({navigation, albums, spotifyToken, albumTracks}) => {
 
-    const handleAlbumPress = id => {
-        console.log(id);
+    const handleAlbumPress = (id, name) => {
+        console.log(name)
+        fetchAlbumTracks(spotifyToken, id)
+        .then(obj => {
+            // console.log(obj.items)
+            albumTracks(obj.items);
+            navigation.navigate('Tracks', { name: name });
+        })
     }
+    
 
     return(
 
         <SafeAreaView>
 
-            <FlatList data={albums} horizontal renderItem={({item}) => (
+            <FlatList horizontal data={albums} showsHorizontalScrollIndicator={false} renderItem={({item}) => (
 
                 <View style={{flexDirection:'row', flexWrap: 'wrap', alignItems: 'flex-start', flex: 1}}>
 
-                    <TouchableHighlight style={[styles.albumCard, {alignItems: 'center'}]} onLongPress={() => handleAlbumPress(item.id)}>
+                    <TouchableHighlight style={[styles.albumCard, {alignItems: 'center'}]} onLongPress={() => handleAlbumPress(item.id, item.name)}>
                         <Image source={item.images[1]} id={item.id}
                         style={{width: item.images[1].width * 0.8, 
-                        height: item.images[1].height * 0.8}} />
+                        height: item.images[1].height * 0.8, borderRadius: 10, 
+                        shadowColor: '#000', shadowOffset: { width: 10, height: 10 }, 
+                        shadowOpacity: 1, shadowRadius: 10,}} />
                     </TouchableHighlight>
 
                 </View>
@@ -34,4 +45,11 @@ const AlbumCarousel = ({albums}) => {
     )
 };
 
-export default AlbumCarousel;
+
+const mdp = dispatch => {
+    return {
+        albumTracks: (tracks) => dispatch({type: 'GET_TRACKS', tracks})
+    }
+}
+
+export default connect(null, mdp)(AlbumCarousel);

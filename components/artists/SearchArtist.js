@@ -3,9 +3,9 @@ import React, {useState} from 'react';
 import { View, TextInput, Image, TouchableHighlight, Text, Alert } from 'react-native';
 import { connect } from 'react-redux';
 //Imports
-import SearchIcon from '../images/search.png';
-import { styles } from '../stylesheet';
-import { fetchArtists } from '../requests';
+import SearchIcon from '../../images/search.png';
+import { styles } from '../../stylesheet';
+import { fetchArtists } from '../../requests';
 
 const SearchArtists = ({navigation, spotifyToken, selectedArtist, getArtists}) => {
 
@@ -47,7 +47,7 @@ const SearchArtists = ({navigation, spotifyToken, selectedArtist, getArtists}) =
 
             <TouchableHighlight onPress={handleSearchSubmit}>
 
-                    <Text style={styles.searchButton}>Search it Up!</Text>
+                    <Text style={styles.searchButton}>Search</Text>
 
             </TouchableHighlight>
 

@@ -23,7 +23,6 @@ const Login = ({navigation, loading, loadingScreen, addingUser}) => {
                 if (obj.error) {
                     Alert.alert(obj.error)
                 } else {
-                    
                     addingUser(obj.user);
                     navigation.navigate('app');
                 }
