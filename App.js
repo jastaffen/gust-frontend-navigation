@@ -1,6 +1,7 @@
 //React
 import React from 'react';
-import { Dimensions, SafeAreaView, ScrollView, Text, Button, View, Image } from 'react-native';
+import { Dimensions, Image, AppRegistry } from 'react-native';
+import { Provider } from 'react-redux';
 //React Navigation
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator} from 'react-navigation-stack'
@@ -18,6 +19,8 @@ import SignUp from './components/user_auth/SignUp';
 //Imports
 import HomeScreenImage from './images/homescreen.png'
 import FollowedArtistsImage from './images/favoriteartists.png';
+import configureStore from './store/configureStore';
+
 
 
 
@@ -110,4 +113,20 @@ const MainTabs = createBottomTabNavigator({
     
   )
 
-export default createAppContainer(MainApp);
+const Main = createAppContainer(MainApp);  
+
+const store = configureStore();
+
+// const GustApp = createAppContainer(Main);
+  
+  
+  const Gust = () => (
+      <Provider store={store}>
+          <Main />
+      </Provider>
+  );
+  
+  AppRegistry.registerComponent('rncourse', () => Gust);
+  
+
+export default Gust;

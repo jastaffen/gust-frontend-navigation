@@ -1,67 +1,72 @@
 //React
-import React from 'react';
-import { View, TextInput, StyleSheet, Image, TouchableHighlight, Text } from 'react-native';
+import React, {useState} from 'react';
+import { View, TextInput, Image, TouchableHighlight, Text, Alert } from 'react-native';
+import { connect } from 'react-redux';
 //Imports
 import SearchIcon from '../images/search.png';
+import { styles } from '../stylesheet';
+import { fetchArtists } from '../requests';
 
-const SearchArtists = ({navigation}) => {
+const SearchArtists = ({navigation, spotifyToken, selectedArtist, getArtists}) => {
 
-    return(
+    const [searchText, setSearchText] = useState('');
+
+    const handleSearchSubmit = () => {
+        if (!searchText) {
+            Alert.alert("You haven't searched for an artist! Search for an artist in the form above.")
+        } else {
+            let formattedName = searchText.toLowerCase().replace(/\s/g, '+');
+            fetchArtists(spotifyToken, formattedName)
+            .then(obj => {
+                if (obj.artists.items.length === 0) {
+                    Alert.alert('Sorry no artists were found by that name')
+                } else if (obj.artists.items.length === 1) {
+                    selectedArtist(obj.artists.items[0]);
+                    navigation.navigate('Artist');
+                } else {
+                    getArtists(obj.artists.items);
+                    navigation.navigate('DYM');
+                }
+            })
+    }}
+
+    return (
 
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
 
             <View style={styles.formContainer}>
 
                 <Image style={styles.imageStyle} source={SearchIcon} />
-                <TextInput style={styles.input} autoCapitalize='words' placeholder="search for an artist:" />
+                
+                <TextInput style={styles.searchInput} autoCapitalize='words' 
+                placeholder="search for an artist:" value={searchText} 
+                onChangeText={(text) => setSearchText(text)}
+                onSubmitEditing={handleSearchSubmit} />
                 
             </View>
 
-            <TouchableHighlight onPress={() => navigation.navigate('DYM')}>
+            <TouchableHighlight onPress={handleSearchSubmit}>
+
                     <Text style={styles.searchButton}>Search it Up!</Text>
+
             </TouchableHighlight>
 
         </View>
+
     )
+};
+
+const msp = state => {
+    return {
+        spotifyToken: state.spotify.spotifyToken
+    }
 }
 
-const styles = StyleSheet.create({
-    formContainer: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#fff',
-        borderWidth: 1,
-        borderColor: '#2FA8F8',
-        height: 40,
-        margin: 10,
-        width: 260,
-    },
-    input: {
-        flex: 1,
-        paddingHorizontal: 10,
-        paddingVertical: 10,
-        height: 40,
-        color: '#2FA8F8'
-    },
-    imageStyle: {
-        padding: 10,
-        margin: 5,
-        height: 25,
-        width: 25,
-        resizeMode: 'stretch',
-        alignItems: 'center',
-    },
-    searchButton: {
-        color: '#2FA8F8', 
-        fontSize: 16, 
-        fontWeight: 'bold', 
-        borderWidth: 1, 
-        borderColor: '#2FA8F8', 
-        padding: 8, 
-        borderRadius: 10
+const mdp = dispatch => {
+    return {
+        selectedArtist: (selectedArtist) => dispatch({type: "SELECT_ARTIST", selectedArtist: selectedArtist}),
+        getArtists: (artists) => dispatch({type: "GET_ARTISTS", artists: artists})
     }
-})
+}
 
-
-export default SearchArtists;
+export default connect(msp, mdp)(SearchArtists);

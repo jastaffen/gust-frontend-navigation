@@ -1,6 +1,7 @@
 //React
 import React, {useState} from 'react';
 import { View, Text, StyleSheet, Image, Dimensions, TouchableOpacity, Modal } from 'react-native';
+import { connect } from 'react-redux';
 //Dimensions
 let width = Dimensions.get('window').width;
 let height = Dimensions.get('window').height;
@@ -8,8 +9,8 @@ let height = Dimensions.get('window').height;
 import LogoPicture from '../images/gustlogo.jpg'
 
 
-const Header = ({navigation}) => {
-
+const Header = ({navigation, firstName}) => {
+    console.log(firstName)
     return (
 
         <View style={styles.homePageHeaderContainer}>
@@ -21,14 +22,20 @@ const Header = ({navigation}) => {
             </TouchableOpacity>
 
             <Text style={styles.mainText}>GUST</Text>
-            <Text style={styles.welcome}>Hi </Text>
+            <Text style={styles.welcome}>Hi {firstName}</Text>
             
         </View>
 
     )
+};
+
+const msp = state => {
+    return {
+        firstName: state.userAuth.user.firstName
+    }
 }
 
-export default Header;
+export default connect(msp)(Header);
 
 const styles = StyleSheet.create({
     homePageHeaderContainer: {
@@ -36,16 +43,17 @@ const styles = StyleSheet.create({
         top: 20,
         justifyContent: 'space-between',
         alignItems: 'center',
+        alignContent: 'center',
     },
     mainText: {
         color: '#2FA8F8',
         fontSize: 50,
         alignSelf: 'center',
-        right: 15
     },
     welcome: {
         color: '#2FA8F8',
-        fontSize: 14,
-        right: 5
+        fontSize: 10,
+        right: 5,
+        fontWeight: 'bold'
     },
 })

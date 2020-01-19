@@ -47,12 +47,18 @@ const SignUp = ({navigation}) => {
                     city: obj.user.city,
                     country: obj.user.country,
                     jwt: obj.jwt})
-                    navigation.navigate('app', {userData: userData})
+                    navigateToHome(userData);
                 }
             })
         } else {
             Alert.alert('Please select a city')
         } 
+    }
+
+    const navigateToHome = (userData) => {
+        if (userData) {
+            navigation.navigate('Home', {userData: userData})
+        }
     }
 
     return(

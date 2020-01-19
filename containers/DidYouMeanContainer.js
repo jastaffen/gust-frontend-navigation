@@ -1,21 +1,46 @@
 //React
 import React from 'react';
-import { View, Text, Button } from 'react-native'
+import { View, Text, Button, SafeAreaView, ScrollView } from 'react-native'
+import { connect } from 'react-redux';
 //Components
+import ArtistCard from '../components/artists/ArtistCard';
+//imports
+import { styles } from '../stylesheet';
 
 
-const DidYouMeanContainer = ({navigation}) => {
+const DidYouMeanContainer = ({navigation, artists}) => {
+    
+    const renderArtists = () => {
+      return artists.map(artist => <ArtistCard key={artist.id} artist={artist} navigation={navigation} />)
+    }
+
     return(
   
       <View style={{flex: 1}}>
-        <View style={{flex: 1, justifyContent: 'center', alignContent: 'center'}}>
-          <Text style={{fontSize: 40, color: 'blue'}}>DID YOU MEAN?</Text>
-          <Button title="Submit Artist" onPress={() => navigation.navigate('Artist')} />
-        </View>
-  
+        
+
+
+        <SafeAreaView style={{flex: 1, justifyContent: 'center', alignContent: 'center'}}>
+
+          <Text style={styles.didYouMean}>Did You Mean?</Text>
+
+          <View>
+            <ScrollView>
+              {renderArtists()}
+            </ScrollView>
+          </View>
+          
+        </SafeAreaView>
+
       </View>
   
     ) 
-  }
+};
 
-export default DidYouMeanContainer;
+const msp = state => {
+  return {
+    artists: state.spotify.artists
+  }
+}
+
+export default connect(msp)(DidYouMeanContainer);

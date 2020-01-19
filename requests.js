@@ -1,3 +1,5 @@
+import Base64 from './Base64.ts';
+
 const headers = { 'Content-Type': "application/json", "Accept": "application/json"};
 
 const usersUrl = "http://localhost:3000/api/v1/users";
@@ -43,6 +45,7 @@ let formattedName;
 //INSERT CLIENT ID AND CLIENT SECRET
 
 
+
 const getTokenUrl = "https://accounts.spotify.com/api/token";
 const artistsURL = `https://api.spotify.com/v1/search?q=${formattedName}&type=artist`
 
@@ -78,6 +81,5 @@ export const fetchArtistAlbums = (spotifyToken, id, country) => fetch(`https://a
         Accept: 'application/json',
         'Authorization': `Bearer ${spotifyToken}`
     }})
-
     .then(parseData)
     .catch(catchError)
