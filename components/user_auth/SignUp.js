@@ -1,14 +1,15 @@
 //React
 import React, {useState} from 'react';
 import { View, TextInput, Text, Picker, StyleSheet, Button, Alert, Image } from 'react-native';
+import { connect } from 'react-redux';
 //Components
 import AuthHeader from './AuthHeader';
 //Imports
 import countries from '../../constants/countries.js';
 import LogoPicture from '../../images/gustlogo.jpg';
-import * as requests from '../../requests';
+import { signUp } from '../../requests';
 
-const SignUp = ({navigation}) => {
+const SignUp = ({navigation, addUser}) => {
 
     const [user, setUser] = useState({
         firstName: null,
@@ -17,7 +18,7 @@ const SignUp = ({navigation}) => {
         password: null
     });
 
-    const [userData, setUserData] = useState(null)
+    // const [userData, setUserData] = useState(null)
 
     const [nextPress, setNextPress] = useState(false);
 
@@ -34,32 +35,25 @@ const SignUp = ({navigation}) => {
 
     const handleSubmit = () => {
         if (city) {
-            requests.signUp(user, city, country)
+            signUp(user, city, country)
             .then(obj => {
                 if (obj.error) {
                     Alert.alert(obj.error)
                 } else {
-                    Alert.alert(`${obj.user.firstName}! Your account has been successfully created!`)
-                    setUserData({
-                    firstName: obj.user.firstName,
-                    lastName: obj.user.lastName,
-                    username: obj.user.username,
-                    city: obj.user.city,
-                    country: obj.user.country,
-                    jwt: obj.jwt})
-                    navigateToHome(userData);
+                    addUser(obj.user);
+                    navigation.navigate('app');
                 }
             })
         } else {
-            Alert.alert('Please select a city')
-        } 
-    }
-
-    const navigateToHome = (userData) => {
-        if (userData) {
-            navigation.navigate('Home', {userData: userData})
+            Alert.alert('please enter a city')
         }
     }
+
+    // const navigateToHome = (userData) => {
+    //     if (userData) {
+    //         navigation.navigate('Home', {userData: userData})
+    //     }
+    // }
 
     return(
 
@@ -124,9 +118,15 @@ const SignUp = ({navigation}) => {
         </View> 
     </View>
     )
+};
+
+const mdp = dispatch => {
+    return {
+        addUser: (user) => dispatch({type: 'ADD_USER', user})
+    }
 }
 
-export default SignUp;
+export default connect(null, mdp)(SignUp);
 
 const styles = StyleSheet.create({
     name: {

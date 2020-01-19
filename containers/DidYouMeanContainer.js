@@ -4,6 +4,7 @@ import { View, Text, Button, SafeAreaView, ScrollView } from 'react-native'
 import { connect } from 'react-redux';
 //Components
 import ArtistCard from '../components/artists/ArtistCard';
+import Header from '../components/Header';
 //imports
 import { styles } from '../stylesheet';
 
@@ -18,7 +19,7 @@ const DidYouMeanContainer = ({navigation, artists}) => {
   
       <View style={{flex: 1}}>
         
-
+        <Header navigation={navigation} />
 
         <SafeAreaView style={{flex: 1, justifyContent: 'center', alignContent: 'center'}}>
 
