@@ -11,6 +11,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import HomePage from './containers/HomePage';
 import DidYouMeanContainer from './containers/DidYouMeanContainer';
 import ArtistPage from './containers/ArtistPage';
+import TracksContainer from './containers/TracksContainer'
 import GustDrawer from './components/GustDrawer';
 import EditProfile from './components/EditProfile';
 import FollowedArtistContainer from './containers/FollowedArtistContainer';
@@ -40,6 +41,10 @@ const HomeStack = createStackNavigator({
   },
   Artist: {
     screen: ArtistPage,
+    navigationOptions: navigationOptionHandler
+  },
+  Tracks: {
+    screen: TracksContainer,
     navigationOptions: navigationOptionHandler
   }
   },

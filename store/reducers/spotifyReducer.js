@@ -3,7 +3,8 @@ const initialState = {
     isLoading: false,
     artists: null,
     selectedArtist: null,
-    albums: null
+    albums: null,
+    tracks: null
 };
 
 const spotifyReducer = (state = initialState, action) => {
@@ -40,6 +41,12 @@ const spotifyReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 albums: action.albums
+            }
+        
+        case "GET_TRACKS":
+            return {
+                ...state,
+                tracks: action.tracks
             }
         
         default: 

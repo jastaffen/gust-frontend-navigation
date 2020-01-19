@@ -45,7 +45,6 @@ let formattedName;
 //INSERT CLIENT ID AND CLIENT SECRET
 
 
-
 const getTokenUrl = "https://accounts.spotify.com/api/token";
 const artistsURL = `https://api.spotify.com/v1/search?q=${formattedName}&type=artist`
 
@@ -78,6 +77,15 @@ export const fetchArtists = (spotifyToken, formattedName) => fetch(`https://api.
 export const fetchArtistAlbums = (spotifyToken, id, country) => fetch(`https://api.spotify.com/v1/artists/${id}/albums?limit=20&include_groups=album&market=US`, {
     headers: {
         'Content-Type': 'application/json',
+        Accept: 'application/json',
+        'Authorization': `Bearer ${spotifyToken}`
+    }})
+    .then(parseData)
+    .catch(catchError)
+
+export const fetchAlbumTracks = (spotifyToken, albumId) => fetch(`https://api.spotify.com/v1/albums/${albumId}/tracks?`, {
+    headers: {
+        'Content': 'application/json',
         Accept: 'application/json',
         'Authorization': `Bearer ${spotifyToken}`
     }})
