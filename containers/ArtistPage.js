@@ -1,20 +1,67 @@
 //React
-import React from 'react';
-import { View, Text, Button } from 'react-native'
+import React, {useEffect} from 'react';
+import { View, Text, Button, ScrollView, ImageBackground, Dimensions, SafeAreaView } from 'react-native';
+import { connect } from 'react-redux';
 //Components
 import Header from '../components/Header';
+import AlbumLoadingScreen from '../components/artists/AlbumLoadingScreen';
+import AlbumCarousel from '../components/artists/AlbumCarousel';
+//imports
+import { fetchArtistAlbums } from '../requests';
+import { styles } from '../stylesheet';
 
-const ArtistPage = ({navigation}) => {
+const width = Dimensions.get('window').width;
+
+const ArtistPage = ({navigation, spotifyToken, selectedArtist, country, loadingScreen, getAlbums, albums, isLoading}) => {
+    
+    useEffect(() => {
+        loadingScreen();
+        fetchArtistAlbums(spotifyToken, selectedArtist.id, country)
+        .then(obj => getAlbums(obj.items))
+    }, []);
 
     return(
+
         <View style={{flex: 1}}>
+
             <Header navigation={navigation} />
-            <View style={{flex: 1, justifyContent: 'center', alignContent: 'center'}}>
-                <Text style={{fontSize: 40, color: 'blue'}}>Hi</Text>
-                <Button title="Submit Artist" />
-            </View>
+
+            <SafeAreaView style={{top: 20}}>
+
+                <ScrollView vertical style={{height: 600}}>
+
+                    <ImageBackground source={selectedArtist.images[1]} style={{width: width, 
+                        height: width, resizeMode: 'contain', borderWidth: 1, zIndex: 5}}>
+                            <Text style={styles.artistName}>{selectedArtist.name}</Text>
+                    </ImageBackground>
+
+                    <ScrollView horizontal pagingEnabled showsHorizontalScrollIndicator={false} style={{top: -90, zIndex: 20}}>
+                                {!albums ? <AlbumLoadingScreen /> : <AlbumCarousel albums={albums} /> }
+                    </ScrollView>
+                    
+
+                </ScrollView>
+            </SafeAreaView>
+
         </View>
     )
+};
+
+const msp = state => {
+    return {
+        spotifyToken: state.spotify.spotifyToken,
+        selectedArtist: state.spotify.selectedArtist,
+        country: state.userAuth.country,
+        albums: state.spotify.albums,
+        isLoading: state.spotify.isLoading
+    }
+};
+
+const mdp = dispatch => {
+    return {
+        loadingScreen: () => dispatch({type: 'LOADING'}),
+        getAlbums: (albums) => dispatch({type: 'GET_ALBUMS', albums})
+    }
 }
 
-export default ArtistPage;
+export default connect(msp, mdp)(ArtistPage);
