@@ -49,6 +49,14 @@ const spotifyReducer = (state = initialState, action) => {
                 tracks: action.tracks
             }
         
+        case "ADD_VOTE":
+            let trackToAddVote = state.tracks.find(track => track.id === action.track.id);
+            trackToAddVote.votes.push(action.vote);
+            return {
+                ...state,
+                tracks: [...state.tracks]
+            }
+        
         default: 
             return state
         

@@ -43,7 +43,9 @@ let spotifyToken;
 let formattedName;
 
 //INSERT CLIENT ID AND CLIENT SECRET
-
+const clientId = "f72960c5793348cbbb950fbad5795195";
+const clientSecret = "77b229c0efff4d2a9bee3d79a0e6b3a1";
+const base64 = Base64.btoa(`${clientId}:${clientSecret}`);
 
 const getTokenUrl = "https://accounts.spotify.com/api/token";
 const artistsURL = `https://api.spotify.com/v1/search?q=${formattedName}&type=artist`
@@ -85,9 +87,28 @@ export const fetchArtistAlbums = (spotifyToken, id, country) => fetch(`https://a
 
 export const fetchAlbumTracks = (spotifyToken, albumId) => fetch(`https://api.spotify.com/v1/albums/${albumId}/tracks?`, {
     headers: {
-        'Content': 'application/json',
+        'Content-Type': 'application/json',
         Accept: 'application/json',
         'Authorization': `Bearer ${spotifyToken}`
     }})
     .then(parseData)
     .catch(catchError)
+
+export const votesByArtistAlbum = (artistId, albumName, userToken) => fetch('http://localhost:3000/api/v1/votes/search', {
+    method: "POST",
+    headers: {
+        'Content-Type': "application/json",
+        Accept: "application/json",
+        'Authorization': `Bearer ${userToken}`
+    },
+    body: JSON.stringify({
+        vote: {
+            api_artist_id: artistId,
+            album_name: albumName
+        }
+    })
+    })
+    .then(parseData)
+    .catch(catchError)
+
+// export const vote = ()
