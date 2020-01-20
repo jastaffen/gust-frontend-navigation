@@ -11,10 +11,11 @@ const width = Dimensions.get('window').width;
 const AlbumCarousel = ({navigation, albums, spotifyToken, albumTracks}) => {
 
     const handleAlbumPress = (id, name) => {
-        console.log(name)
+        // console.log(name)
         fetchAlbumTracks(spotifyToken, id)
         .then(obj => {
-            // console.log(obj.items)
+          
+            obj.items.map(item => item.votes = []);
             albumTracks(obj.items);
             navigation.navigate('Tracks', { name: name });
         })
