@@ -1,5 +1,5 @@
 //React
-import React from 'react';
+import React, {useState} from 'react';
 import { TouchableHighlight, View, FlatList, Image, SafeAreaView, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 //imports
@@ -10,20 +10,24 @@ const width = Dimensions.get('window').width;
 
 const AlbumCarousel = ({navigation, albums, spotifyToken, albumTracks}) => {
 
+    const [albumsLoading, setAlbumLoad] = useState(false);
+
     const handleAlbumPress = (id, name) => {
+        setAlbumLoad(true);
         fetchAlbumTracks(spotifyToken, id)
         .then(obj => {
             obj.items.map(item => item.votes = []);
             albumTracks(obj.items);
+            setAlbumLoad(false);
             navigation.navigate('Tracks', { name: name });
         })
     }
     
 
     return(
-
+        
         <SafeAreaView>
-
+            {albumsLoading ? null : null } 
             <FlatList horizontal data={albums} showsHorizontalScrollIndicator={false} renderItem={({item}) => (
 
                 <View style={{flexDirection:'row', flexWrap: 'wrap', alignItems: 'flex-start', flex: 1}}>

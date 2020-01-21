@@ -17,13 +17,16 @@ const TracksContainer = ({navigation, tracks, selectedArtist, userToken, addVote
         if (selectedArtist.apiArtistId) {
             votesByArtistAlbum(selectedArtist.apiArtistId, navigation.getParam('name'), userToken)
             .then(obj => {
+                
                 obj.forEach(vote => (
                     tracks.forEach(track => {
                         if (track.name.toLowerCase().includes(vote.songName.toLowerCase())) {
                             addVote(track, vote);
                         }})
                 ))
+                
                 setMounted(true)
+                
              }) 
         } else {
             votesByArtistAlbum(selectedArtist.id, navigation.getParam('name'), userToken)
@@ -50,10 +53,13 @@ const TracksContainer = ({navigation, tracks, selectedArtist, userToken, addVote
                 <Text style={{fontSize: 20, textAlign: 'center'}}>{navigation.getParam('name')} by {selectedArtist.name}</Text>
 
                 <SafeAreaView style={{flex: 1}}>
+
                     <ScrollView contentContainerStyle={{paddingBottom: 40}}>
-                        {isMounted ? tracks.map(track => <TrackCard track={track} key={track.id} albumName={navigation.getParam('name')} addVote={addVote} />)
+
+                        {isMounted ? tracks.map(track => <TrackCard track={track} key={track.id} albumName={navigation.getParam('name')} />)
  : null}
                     </ScrollView>
+
                 </SafeAreaView>
                 
             </View>

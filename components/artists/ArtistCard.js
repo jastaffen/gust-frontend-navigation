@@ -1,5 +1,5 @@
 //React
-import React from 'react';
+import React, {useEffect} from 'react';
 import { ImageBackground, Text, TouchableHighlight, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 //Imports
@@ -7,7 +7,11 @@ import { styles } from '../../stylesheet';
 //Constants
 const width = Dimensions.get('window').width;
 
-const ArtistCard = ({navigation, artist, selectedArtist, followedArtist}) => {
+const ArtistCard = ({navigation, artist, selectedArtist, followedArtist, deselectArtist}) => {
+
+    useEffect(() => {
+        deselectArtist()
+    }, [])
     
     const handleArtistCardPress = () => {
         selectedArtist(artist);
@@ -27,7 +31,8 @@ const ArtistCard = ({navigation, artist, selectedArtist, followedArtist}) => {
 
 const mdp = dispatch => {
     return {
-        selectedArtist: (selectedArtist) => dispatch({type: "SELECT_ARTIST", selectedArtist})
+        selectedArtist: (selectedArtist) => dispatch({type: "SELECT_ARTIST", selectedArtist}),
+        deselectArtist: () => dispatch({type: "DESELECT_ARTIST"})
     }
 }
 

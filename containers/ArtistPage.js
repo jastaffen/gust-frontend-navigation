@@ -18,7 +18,7 @@ const ArtistPage = ({navigation, spotifyToken, selectedArtist, country, loadingS
 
     const alreadyFollowed = () => {
         return follows.map(follow => {
-            if (follow.apiArtistId === selectedArtist.id) {
+            if (follow.apiArtistId === (selectedArtist.id) || (follow.apiArtistId === selectedArtist.apiArtistId)) {
                 setFollowed(true)
             }
         })
@@ -30,9 +30,16 @@ const ArtistPage = ({navigation, spotifyToken, selectedArtist, country, loadingS
             .then(obj => addFollow(obj.follow))
             setFollowed(true);
         } else {
-            unfollowArtist(selectedArtist.id, userData.jwt)
-            .then(obj => unFollow(obj.follow))
-            setFollowed(false);
+            if (selectedArtist.apiArtistId) {
+                unfollowArtist(selectedArtist.apiArtistId, userData.jwt)
+                .then(obj => unFollow(obj.follow))
+                navigation.navigate('Home');
+            } else {
+                unfollowArtist(selectedArtist.id, userData.jwt)
+                .then(obj => unFollow(obj.follow))
+                setFollowed(false);
+            }
+            
         }   
     }
 
@@ -47,7 +54,7 @@ const ArtistPage = ({navigation, spotifyToken, selectedArtist, country, loadingS
             fetchArtistAlbums(spotifyToken, selectedArtist.id, country)
             .then(obj => getAlbums(obj.items))
         }
-    }, []);
+    }, [selectedArtist]);
 
     return(
 
@@ -62,7 +69,7 @@ const ArtistPage = ({navigation, spotifyToken, selectedArtist, country, loadingS
                     <ImageBackground source={navigation.getParam('followedArtist') ? {uri: selectedArtist.largeImage} : selectedArtist.images[1]} style={{width: width, 
                         height: width, resizeMode: 'contain', borderWidth: 1, zIndex: 5}}>
                             
-                                <Text style={styles.artistName}>{selectedArtist.name}</Text>
+                                <Text style={styles.artistName}>{selectedArtist.artistName ? selectedArtist.artistName : selectedArtist.name}</Text>
 
                                 <TouchableHighlight style={isFollowed ? [styles.followButton, styles.followed] : [styles.followButton, styles.notFollowed]} onPress={handleFollow}>
                                     <Text style={{textAlign: 'center', color: 'white'}}>{isFollowed ? 'Unfollow' : 'Follow'}</Text>
