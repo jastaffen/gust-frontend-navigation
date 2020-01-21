@@ -50,11 +50,36 @@ const spotifyReducer = (state = initialState, action) => {
             }
         
         case "ADD_VOTE":
-            let trackToAddVote = state.tracks.find(track => track.id === action.track.id);
+            let copy = [...state.tracks];
+            let trackToAddVote = copy.find(track => track.id === action.track.id);
             trackToAddVote.votes.push(action.vote);
+            const newTracks = copy.map(track => {
+                if (track.id === trackToAddVote.id) {
+                    return trackToAddVote
+                } else {
+                    return track
+                }
+            });
             return {
                 ...state,
-                tracks: [...state.tracks]
+                tracks: newTracks
+            }
+            
+        case "DELETE_VOTE":
+            
+            let trackWithoutVote = action.track.votes.filter(vote => vote.id !== action.vote.id);
+            let downvotedTrack = action.track.votes = trackWithoutVote
+            
+            let handledTracks = [...state.tracks].map(track => {
+                if (track.id === downvotedTrack.id) {
+                    return downvotedTrack
+                } else {
+                    return track
+                }
+            })
+            return {
+                ...state,
+                tracks: handledTracks
             }
         
         default: 

@@ -26,7 +26,7 @@ import configureStore from './store/configureStore';
 
 
 
-const navigationOptionHandler = (navigation) => ({
+const navigationOptionHandler = () => ({
   header: null
 });
 
@@ -78,14 +78,25 @@ const FollowedArtistStack = createStackNavigator({
 const MainTabs = createBottomTabNavigator({
   Main: {
     screen: MainStack,
-    navigationOptions: {
-      tabBarIcon: () => <Image source={HomeScreenImage} style={{width: 20, height: 20}} />
+    navigationOptions: ({navigation}) => {
+      return {
+        tabBarIcon: () => <Image source={HomeScreenImage} style={{width: 20, height: 20}} />,
+        tabBarOnPress: ({navigation, defaultHandler}) => {
+          navigation.navigate('Home');
+          defaultHandler();
+        }
+      }
     }
   },
   FollowedArtists: {
     screen: FollowedArtistStack,
-    navigationOptions: {
-      tabBarIcon: () => <Image source={FollowedArtistsImage} style={{width: 20, height: 20}} />
+    navigationOptions: ({navigation}) => {
+      return {
+        tabBarIcon: () => <Image source={FollowedArtistsImage} style={{width: 20, height: 20}} />,
+        tabBarOnPress: ({navigation, defaultHandler}) => {
+          defaultHandler();
+        }
+      }
     }
   }
   });

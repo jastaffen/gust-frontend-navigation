@@ -40,7 +40,8 @@ const SignUp = ({navigation, addUser}) => {
                 if (obj.error) {
                     Alert.alert(obj.error)
                 } else {
-                    addUser(obj.user);
+                    Alert.alert(`You've successfully created an account!`)
+                    addUser(obj.user, obj.jwt);
                     navigation.navigate('app');
                 }
             })
@@ -76,7 +77,7 @@ const SignUp = ({navigation, addUser}) => {
                 <View style={{top: -8, width: 125, justifyContent: 'center', margin: 35}}>
 
                     <Text style={{top: 70, alignSelf: 'center'}}>Select a Country:</Text>
-                    <Picker selectedValue={country} onValueChange={(itemValue, itemIndex) => setCountry(itemValue)} mode="dropdown"> 
+                    <Picker style={{width: 100}} itemStyle={{fontSize: 10, fontWeight: 'bold', textAlign: 'center'}} selectedValue={country} onValueChange={(itemValue, itemIndex) => setCountry(itemValue)} mode="dropdown"> 
                         {countries.map(cntry => <Picker.Item key={cntry.code} label={cntry.name} value={cntry.code} />)}
                     </Picker>
 
@@ -122,7 +123,7 @@ const SignUp = ({navigation, addUser}) => {
 
 const mdp = dispatch => {
     return {
-        addUser: (user) => dispatch({type: 'ADD_USER', user})
+        addUser: (user, jwt) => dispatch({type: 'ADD_USER', user, jwt})
     }
 }
 

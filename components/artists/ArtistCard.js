@@ -7,19 +7,18 @@ import { styles } from '../../stylesheet';
 //Constants
 const width = Dimensions.get('window').width;
 
-const ArtistCard = ({navigation, artist, selectedArtist}) => {
+const ArtistCard = ({navigation, artist, selectedArtist, followedArtist}) => {
     
-    // console.log(artist);
     const handleArtistCardPress = () => {
         selectedArtist(artist);
-        navigation.navigate('Artist');
+        navigation.navigate('Artist', {followedArtist});
     }
 
     return(
 
         <TouchableHighlight style={styles.dymArtistContainer} onPress={handleArtistCardPress}>
-            <ImageBackground source={artist.images[0]} style={{width: width, height: 100, opacity: 0.9, justifyContent: 'center'}}>
-                <Text style={styles.dymArtistText}>{artist.name}</Text>
+            <ImageBackground source={followedArtist ? {uri: artist.largeImage} : artist.images[0]} style={followedArtist ? {width: width, height: 230}: {width: width, height: 100, opacity: 0.9, justifyContent: 'center'}}>
+                <Text style={followedArtist ? [styles.dymArtistText, {margin: '25%'}] :  styles.dymArtistText }>{followedArtist ? artist.artistName : artist.name}</Text>
             </ImageBackground>
         </TouchableHighlight>
         

@@ -1,5 +1,6 @@
 const initialState = {
     user: null,
+    jwt: null,
     isLoading: false
 }
 
@@ -16,13 +17,15 @@ const userAuthReducer = (state = initialState, action) => {
             return {
                 ...state,
                 user: action.user,
+                jwt: action.jwt,
                 isLoading: false
             }
         
         case "LOG_OUT":
             return {
                 ...state,
-                user: null
+                user: null,
+                jwt: null
             }
 
         default:

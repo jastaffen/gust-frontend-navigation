@@ -4,10 +4,12 @@ import thunk from 'redux-thunk';
 //Reducers
 import userAuthReducer from './reducers/userAuthReducer';
 import spotifyReducer from './reducers/spotifyReducer';
+import followsReducer from './reducers/followsReducer';
 
 const rootReducer = combineReducers({
     userAuth: userAuthReducer,
-    spotify: spotifyReducer
+    spotify: spotifyReducer,
+    follows: followsReducer
 })
 
 const configureStore = () => {

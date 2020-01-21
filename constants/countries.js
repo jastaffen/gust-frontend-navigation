@@ -1,4 +1,5 @@
 const countries = [
+    {'code': "US", 'name': "USA"},
     {'code': "AD", 'name':  "Andorra"},
     {'code': "AE", 'name':  "United Arab Emirates"},
     {'code': "AF", 'name':  "Afghanistan"},
@@ -249,7 +250,7 @@ const countries = [
     {'code': "UA", 'name': "Ukraine"},
     {'code': "UG", 'name': "Uganda"},
     {'code': "UM", 'name': "United States Minor Outlying Islands"},
-    {'code': "US", 'name': "United States of America"},
+    // {'code': "US", 'name': "USA"},
     {'code': "UY", 'name': "Uruguay"},
     {'code': "UZ", 'name': "Uzbekistan"},
     //V

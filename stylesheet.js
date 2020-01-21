@@ -54,16 +54,15 @@ export const styles = StyleSheet.create({
     },
     dymArtistContainer: {
         borderTopWidth: 1,
-        borderBottomWidth: 1
+        borderBottomWidth: 1,
     },
     dymArtistText: {
         color: 'white',
-        // fontWeight: 'bold',
         fontSize: 35,
         alignSelf: 'center',
         textShadowColor: 'rgba(0, 0, 0, 0.75)',
         textShadowOffset: {width: -1, height: 2},
-        textShadowRadius: 10
+        textShadowRadius: 10,
     },
     didYouMean: {
         color: '#30ACFF',
@@ -94,6 +93,27 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',  
         marginHorizontal: 5,
         zIndex: 20
+    },
+    followButton: {
+        top: -38, 
+        left: 290, 
+        paddingHorizontal: 8, 
+        paddingVertical: 5, 
+        width: 80, 
+        alignContent: 'center', 
+        borderWidth: 2, 
+        borderColor: 'white', 
+        borderRadius: 10
+    }, 
+    notFollowed: {
+        backgroundColor: '#2FA8F8'
+    },
+    followed: {
+        backgroundColor: '#2585C4',
+        width: 100,
+        left: 270
+        // transition < -- insert transition of width increase
     }
+    
 });
 

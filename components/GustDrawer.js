@@ -15,7 +15,7 @@ const GustDrawer = ({navigation}) => {
         <ScrollView>
           <Button title="Home" onPress={() => navigation.navigate('Home')} />
           <Button title="Edit Profile" onPress={() => navigation.navigate('EditProfile')} />
-          <Button title="Close" onPress={() => navigation.closeDrawer()} />
+          <Button title="x" onPress={() => navigation.closeDrawer()} />
         </ScrollView>
 
         <View>

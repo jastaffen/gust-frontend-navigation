@@ -25,6 +25,7 @@ const SearchArtists = ({navigation, spotifyToken, selectedArtist, getArtists}) =
                     navigation.navigate('Artist');
                 } else {
                     getArtists(obj.artists.items);
+                    setSearchText('');
                     navigation.navigate('DYM');
                 }
             })

@@ -1,6 +1,6 @@
 //React
-import React, {useEffect} from 'react';
-import { View, Text, FlatList, TouchableHighlight, Image, SafeAreaView, ScrollView, Dimensions } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { View, Text, SafeAreaView, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 //Components
 import Header from '../components/Header';
@@ -11,17 +11,32 @@ import { votesByArtistAlbum } from '../requests';
 
 const TracksContainer = ({navigation, tracks, selectedArtist, userToken, addVote}) => {
 
+    const [isMounted, setMounted] = useState(false);
+
     useEffect(() => {
-        votesByArtistAlbum(selectedArtist.id, navigation.getParam('name'), userToken)
-        .then(obj => {
-            obj.forEach(vote => (
-                tracks.forEach(track => {
-                    if (track.name.toLowerCase().includes(vote.songName.toLowerCase())) {
-                        addVote(track, vote)
-                    }
-                })
-            )) 
-        })
+        if (selectedArtist.apiArtistId) {
+            votesByArtistAlbum(selectedArtist.apiArtistId, navigation.getParam('name'), userToken)
+            .then(obj => {
+                obj.forEach(vote => (
+                    tracks.forEach(track => {
+                        if (track.name.toLowerCase().includes(vote.songName.toLowerCase())) {
+                            addVote(track, vote);
+                        }})
+                ))
+                setMounted(true)
+             }) 
+        } else {
+            votesByArtistAlbum(selectedArtist.id, navigation.getParam('name'), userToken)
+            .then(obj => {
+                obj.forEach(vote => (
+                    tracks.forEach(track => {
+                        if (track.name.toLowerCase().includes(vote.songName.toLowerCase())) {
+                            addVote(track, vote);
+                        }})
+            ))
+            setMounted(true)
+         })
+        }
     }, [])
 
     return(
@@ -36,7 +51,8 @@ const TracksContainer = ({navigation, tracks, selectedArtist, userToken, addVote
 
                 <SafeAreaView style={{flex: 1}}>
                     <ScrollView contentContainerStyle={{paddingBottom: 40}}>
-                        {tracks.map(track => <TrackCard track={track} key={track.id} />)}
+                        {isMounted ? tracks.map(track => <TrackCard track={track} key={track.id} albumName={navigation.getParam('name')} addVote={addVote} />)
+ : null}
                     </ScrollView>
                 </SafeAreaView>
                 
@@ -45,7 +61,6 @@ const TracksContainer = ({navigation, tracks, selectedArtist, userToken, addVote
 
     )
 }
-
 const msp = state => {
     return {
         tracks: state.spotify.tracks,

@@ -23,7 +23,8 @@ const Login = ({navigation, loading, loadingScreen, addingUser}) => {
                 if (obj.error) {
                     Alert.alert(obj.error)
                 } else {
-                    addingUser(obj.user);
+                    // console.log(obj.jwt)
+                    addingUser(obj.user, obj.jwt);
                     navigation.navigate('app');
                 }
             })
@@ -66,7 +67,7 @@ const msp = state => {
 const mdp = dispatch => {
     return {
         loadingScreen: () => dispatch({type: 'LOADING_USER'}),
-        addingUser: (user) => dispatch({type: 'ADD_USER', user})
+        addingUser: (user, jwt) => dispatch({type: 'ADD_USER', user, jwt})
     }
 }
 
