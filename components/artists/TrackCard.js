@@ -17,44 +17,54 @@ const TrackCard = ({track, selectedArtist, userData, albumName, addVote, deleteU
     const [voteCount, setVoteCount] = useState(track.votes.length)
 
     useEffect(() => {
-        track.votes.map(vote => {
+        console.log('start')
+        track.votes.forEach(vote => {
+            console.log('in loop')
             if (vote.userId === userData.user.id) {
+                console.log('checking in loop')
                 setIsClicked(true)
-            }
+            } 
         })
     }, [])
 
 
     const handleVotePress = () => {
+
         if (selectedArtist.artistName) {
             if (!isClicked) {
+                setIsClicked(true);
+                setVoteCount(voteCount + 1)
                 vote(selectedArtist.artistName, selectedArtist.apiArtistId, track.name, track.id, albumName, userData.user.id, userData.jwt)
                 .then(obj => {
                     addVote(track, obj.vote);
-                    setIsClicked(true);
-                    setVoteCount(track.votes.length)
                 })
             } else {
                 let voteToDelete = track.votes.find(vote => vote.userId === userData.user.id);
-                deleteVote(voteToDelete.id, userData.jwt);
-                deleteUserVote(track, voteToDelete);
                 setIsClicked(false);
-                setVoteCount(track.votes.length)
+                setVoteCount(voteCount - 1)
+                if (voteToDelete) {
+                    deleteVote(voteToDelete.id, userData.jwt);
+                    deleteUserVote(track, voteToDelete);
+                } 
             }
         } else {
             if (!isClicked) {
+                setIsClicked(true);
+                setVoteCount(voteCount + 1)
                 vote(selectedArtist.name, selectedArtist.id, track.name, track.id, albumName, userData.user.id, userData.jwt)
                 .then(obj => {
                     addVote(track, obj.vote);
-                    setIsClicked(true);
-                    setVoteCount(track.votes.length)
                 })
             } else {
                 let voteToDelete = track.votes.find(vote => vote.userId === userData.user.id);
-                deleteVote(voteToDelete.id, userData.jwt);
-                deleteUserVote(track, voteToDelete);
                 setIsClicked(false);
-                setVoteCount(track.votes.length)
+                setVoteCount(voteCount - 1);
+                if (voteToDelete) {
+                    deleteVote(voteToDelete.id, userData.jwt);
+                    deleteUserVote(track, voteToDelete);
+                }
+                
+                
             } 
         }
         
@@ -85,7 +95,7 @@ const msp = state => {
 
 const mdp = dispatch => {
     return {
-        // addVote: (track, vote) => dispatch({type: 'ADD_VOTE', track, vote}),
+        addVote: (track, vote) => dispatch({type: 'ADD_VOTE', track, vote}),
         deleteUserVote: (track, vote) => dispatch({type: 'DELETE_VOTE', track, vote})
     }
 }

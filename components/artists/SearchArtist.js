@@ -22,6 +22,7 @@ const SearchArtists = ({navigation, spotifyToken, selectedArtist, getArtists}) =
                     Alert.alert('Sorry no artists were found by that name')
                 } else if (obj.artists.items.length === 1) {
                     selectedArtist(obj.artists.items[0]);
+                    setSearchText('');
                     navigation.navigate('Artist');
                 } else {
                     getArtists(obj.artists.items);
