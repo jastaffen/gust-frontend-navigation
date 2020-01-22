@@ -44,6 +44,7 @@ export const login = (user) => fetch(loginUrl, {
 /****************************SPOTIFY******************************/
 
 
+
 //Spotify
 let spotifyToken;
 let formattedName;
@@ -187,6 +188,7 @@ export const followedArtists = (userToken) => fetch(backendURL + `/api/v1/follow
     .catch(catchError)
 
 // ***********************UpcomingShows*************************//
+
 
 
 

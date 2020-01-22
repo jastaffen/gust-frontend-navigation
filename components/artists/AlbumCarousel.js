@@ -32,7 +32,7 @@ const AlbumCarousel = ({navigation, albums, spotifyToken, albumTracks}) => {
 
                 <View style={{flexDirection:'row', flexWrap: 'wrap', alignItems: 'flex-start', flex: 1}}>
 
-                    <TouchableHighlight style={[styles.albumCard, {alignItems: 'center'}]} onLongPress={() => handleAlbumPress(item.id, item.name)}>
+                    <TouchableHighlight style={[styles.albumCard, {alignItems: 'center'}]} onPress={() => handleAlbumPress(item.id, item.name)}>
                         <Image source={item.images[1]} id={item.id}
                         style={{width: item.images[1].width * 0.8, 
                         height: item.images[1].height * 0.8, borderRadius: 10, 
