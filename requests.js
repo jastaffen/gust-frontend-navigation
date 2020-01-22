@@ -2,8 +2,8 @@ import Base64 from './Base64.ts';
 
 const headers = { 'Content-Type': "application/json", "Accept": "application/json"};
 
-const usersUrl = "http://d1e46ad0.ngrok.io/api/v1/users";
-const loginUrl = "http://d1e46ad0.ngrok.io/api/v1/login";
+const usersUrl = "http://localhost:3000/api/v1/users";
+const loginUrl = "http://localhost:3000/api/v1/login";
 
 const parseData = resp => resp.json();
 const catchError = obj => console.log(obj.error)
@@ -47,8 +47,7 @@ let spotifyToken;
 let formattedName;
 
 //INSERT CLIENT ID AND CLIENT SECRET
-const clientId = "f72960c5793348cbbb950fbad5795195";
-const clientSecret = "77b229c0efff4d2a9bee3d79a0e6b3a1";
+
 const base64 = Base64.btoa(`${clientId}:${clientSecret}`);
 
 const getTokenUrl = "https://accounts.spotify.com/api/token";
@@ -100,7 +99,7 @@ export const fetchAlbumTracks = (spotifyToken, albumId) => fetch(`https://api.sp
 
 /****************************VOTES********************************/
 
-export const votesByArtistAlbum = (artistId, albumName, userToken) => fetch('http://d1e46ad0.ngrok.io/api/v1/votes/search', {
+export const votesByArtistAlbum = (artistId, albumName, userToken) => fetch('http://localhost:3000/api/v1/votes/search', {
     method: "POST",
     headers: {
         'Content-Type': "application/json",
@@ -117,7 +116,7 @@ export const votesByArtistAlbum = (artistId, albumName, userToken) => fetch('htt
     .then(parseData)
     .catch(catchError)
 
-export const vote = (artistName, artistId, songName, songId, albumName, userId, userToken) => fetch('http://d1e46ad0.ngrok.io/api/v1/votes', {
+export const vote = (artistName, artistId, songName, songId, albumName, userId, userToken) => fetch('http://localhost:3000/api/v1/votes', {
     method: "POST",
     headers: {
         'Content-Type': "application/json",
@@ -135,7 +134,7 @@ export const vote = (artistName, artistId, songName, songId, albumName, userId, 
     .then(parseData)
     .catch(catchError)
 
-export const deleteVote = (voteId, userToken) => fetch(`http://d1e46ad0.ngrok.io/api/v1/votes/${voteId}`, {
+export const deleteVote = (voteId, userToken) => fetch(`http://localhost:3000/api/v1/votes/${voteId}`, {
     method: 'DELETE',
     headers: {
         'Content-Type': "application/json",
@@ -145,7 +144,7 @@ export const deleteVote = (voteId, userToken) => fetch(`http://d1e46ad0.ngrok.io
 
 /****************************FOLLOWS*******************************/
 
-export const followArtist = (artistId, largeArtistImage, mediumArtistImage, smallArtistImage, artistName, userId, userToken) => fetch(`http://d1e46ad0.ngrok.io/api/v1/follows`, {
+export const followArtist = (artistId, largeArtistImage, mediumArtistImage, smallArtistImage, artistName, userId, userToken) => fetch(`http://localhost:3000/api/v1/follows`, {
     method: "POST",
     headers: {
         'Content-Type': "application/json",
@@ -165,7 +164,7 @@ export const followArtist = (artistId, largeArtistImage, mediumArtistImage, smal
     .then(parseData)
     .catch(catchError)
 
-export const unfollowArtist = (artistId, userToken) => fetch(`http://d1e46ad0.ngrok.io/api/v1/follows/${artistId}`, {
+export const unfollowArtist = (artistId, userToken) => fetch(`http://localhost:3000/api/v1/follows/${artistId}`, {
     method: "DELETE",
     headers: {
         'Content-Type': "application/json",
@@ -176,7 +175,7 @@ export const unfollowArtist = (artistId, userToken) => fetch(`http://d1e46ad0.ng
     .catch(catchError)
 
 
-export const followedArtists = (userToken) => fetch(`http://d1e46ad0.ngrok.io/api/v1/follows`, {
+export const followedArtists = (userToken) => fetch(`http://localhost:3000/api/v1/follows`, {
     method: "GET",
     headers: {
         'Content-Type': "application/json",
