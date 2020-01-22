@@ -113,6 +113,31 @@ export const styles = StyleSheet.create({
         width: 100,
         left: 270
         // transition < -- insert transition of width increase
+    },
+    upcomingShowsContainer: {
+        flex: 1, 
+        flexDirection: 'row', 
+        top: 30, 
+        flexWrap: 'wrap', 
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        zIndex: 10
+    },
+    upcomingShowsButtonInactive: {
+        margin: 4, 
+        padding: 15, 
+        borderWidth: 2, 
+        borderColor: '#1F60E0', 
+        borderRadius: 10,
+        backgroundColor: '#fff',
+    },
+    upcomingShowsButtonActive: {
+        margin: 4, 
+        padding: 15, 
+        borderWidth: 2, 
+        borderColor: '#1F60E0', 
+        borderRadius: 10,
+        backgroundColor: '#2FA8F8',
     }
     
 });

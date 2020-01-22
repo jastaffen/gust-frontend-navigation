@@ -48,7 +48,6 @@ let formattedName;
 
 //INSERT CLIENT ID AND CLIENT SECRET
 
-const base64 = Base64.btoa(`${clientId}:${clientSecret}`);
 
 const getTokenUrl = "https://accounts.spotify.com/api/token";
 const artistsURL = `https://api.spotify.com/v1/search?q=${formattedName}&type=artist`
@@ -184,3 +183,30 @@ export const followedArtists = (userToken) => fetch(`http://localhost:3000/api/v
     }})
     .then(parseData)
     .catch(catchError)
+
+// ***********************UpcomingShows*************************//
+
+
+
+export const getArtistSongKickId = (artistName) => fetch(`https://api.songkick.com/api/3.0/search/artists.json?apikey=${sk_key}&query=${artistName}
+`, {
+    method: 'GET',
+    headers
+    })
+    .then(parseData)
+    .then(obj => {
+        // console.log(obj.resultsPage.results.artist[0])
+        if (obj.resultsPage.results.artist[0].onTourUntil) {
+            let artistSKID = obj.resultsPage.results.artist[0].id;
+            return fetch(`https://api.songkick.com/api/3.0/artists/${artistSKID}/calendar.json?apikey=${sk_key}`, {
+                method: 'GET',
+                headers
+                })
+                .then(parseData)
+                .catch(catchError)
+        } else {
+            return obj.resultsPage.results.artist[0]
+        }
+    })
+    
+
