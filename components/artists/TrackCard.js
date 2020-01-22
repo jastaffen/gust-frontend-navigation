@@ -17,14 +17,15 @@ const TrackCard = ({track, selectedArtist, userData, albumName, addVote, deleteU
     const [voteCount, setVoteCount] = useState(track.votes.length)
 
     useEffect(() => {
-        console.log('start')
-        track.votes.forEach(vote => {
-            console.log('in loop')
-            if (vote.userId === userData.user.id) {
-                console.log('checking in loop')
-                setIsClicked(true)
-            } 
-        })
+        if (track.votes.length > 0) {
+            track.votes.forEach(vote => {
+                console.log('in loop')
+                if (vote.userId === userData.user.id) {
+                    console.log('checking in loop')
+                    setIsClicked(true)
+                } 
+            })
+        }
     }, [])
 
 
