@@ -1,13 +1,26 @@
 //React
 import React from 'react';
-import { ActivityIndicator, View } from 'react-native';
+import {ActivityIndicator, StatusBar, StyleSheet, View,} from 'react-native';
+//imports
+import { getSpotifyToken } from '../../requests';
 
-const AuthLoading = () => {
-    return(
-        <View style={{flex: 1}}>
-            <ActivityIndicator size="large" color="#2FA8F8" />
-        </View>
-    )
+class AuthLoading extends React.Component {
+
+  // componentDidMount() {
+    
+  // }
+
+
+  
+
+  render() {
+    return (
+      <View>
+        <ActivityIndicator />
+        <StatusBar barStyle="default" />
+      </View>
+    );
+  }
 }
 
 export default AuthLoading;

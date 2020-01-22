@@ -1,6 +1,6 @@
 //React
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, TextInput } from 'react-native'
+import { View, Text, Button, TextInput, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux';
 //Components
 import Header from '../components/Header';

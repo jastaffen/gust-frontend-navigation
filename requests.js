@@ -2,8 +2,10 @@ import Base64 from './Base64.ts';
 
 const headers = { 'Content-Type': "application/json", "Accept": "application/json"};
 
-const usersUrl = "http://localhost:3000/api/v1/users";
-const loginUrl = "http://localhost:3000/api/v1/login";
+const backendURL = 'http://e4379330.ngrok.io';
+
+const usersUrl = backendURL + "/api/v1/users";
+const loginUrl = backendURL + "/api/v1/login";
 
 const parseData = resp => resp.json();
 const catchError = obj => console.log(obj.error)
@@ -98,7 +100,7 @@ export const fetchAlbumTracks = (spotifyToken, albumId) => fetch(`https://api.sp
 
 /****************************VOTES********************************/
 
-export const votesByArtistAlbum = (artistId, albumName, userToken) => fetch('http://localhost:3000/api/v1/votes/search', {
+export const votesByArtistAlbum = (artistId, albumName, userToken) => fetch(backendURL + '/api/v1/votes/search', {
     method: "POST",
     headers: {
         'Content-Type': "application/json",
@@ -115,7 +117,7 @@ export const votesByArtistAlbum = (artistId, albumName, userToken) => fetch('htt
     .then(parseData)
     .catch(catchError)
 
-export const vote = (artistName, artistId, songName, songId, albumName, userId, userToken) => fetch('http://localhost:3000/api/v1/votes', {
+export const vote = (artistName, artistId, songName, songId, albumName, userId, userToken) => fetch(backendURL + '/api/v1/votes', {
     method: "POST",
     headers: {
         'Content-Type': "application/json",
@@ -133,7 +135,7 @@ export const vote = (artistName, artistId, songName, songId, albumName, userId, 
     .then(parseData)
     .catch(catchError)
 
-export const deleteVote = (voteId, userToken) => fetch(`http://localhost:3000/api/v1/votes/${voteId}`, {
+export const deleteVote = (voteId, userToken) => fetch(backendURL +`/api/v1/votes/${voteId}`, {
     method: 'DELETE',
     headers: {
         'Content-Type': "application/json",
@@ -143,7 +145,7 @@ export const deleteVote = (voteId, userToken) => fetch(`http://localhost:3000/ap
 
 /****************************FOLLOWS*******************************/
 
-export const followArtist = (artistId, largeArtistImage, mediumArtistImage, smallArtistImage, artistName, userId, userToken) => fetch(`http://localhost:3000/api/v1/follows`, {
+export const followArtist = (artistId, largeArtistImage, mediumArtistImage, smallArtistImage, artistName, userId, userToken) => fetch(backendURL + `/api/v1/follows`, {
     method: "POST",
     headers: {
         'Content-Type': "application/json",
@@ -163,7 +165,7 @@ export const followArtist = (artistId, largeArtistImage, mediumArtistImage, smal
     .then(parseData)
     .catch(catchError)
 
-export const unfollowArtist = (artistId, userToken) => fetch(`http://localhost:3000/api/v1/follows/${artistId}`, {
+export const unfollowArtist = (artistId, userToken) => fetch(backendURL + `/api/v1/follows/${artistId}`, {
     method: "DELETE",
     headers: {
         'Content-Type': "application/json",
@@ -174,7 +176,7 @@ export const unfollowArtist = (artistId, userToken) => fetch(`http://localhost:3
     .catch(catchError)
 
 
-export const followedArtists = (userToken) => fetch(`http://localhost:3000/api/v1/follows`, {
+export const followedArtists = (userToken) => fetch(backendURL + `/api/v1/follows`, {
     method: "GET",
     headers: {
         'Content-Type': "application/json",

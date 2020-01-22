@@ -22,8 +22,8 @@ const SignUp = ({navigation, addUser}) => {
 
     const [nextPress, setNextPress] = useState(false);
 
-    const [city, setCity] = useState(null)
-    const [country, setCountry] = useState('AD')
+    const [city, setCity] = useState(null);
+    const [country, setCountry] = useState('AD');
 
     const handleNextPress = () => {
         if (user.firstName && user.lastName && user.username && user.password) {
@@ -56,12 +56,45 @@ const SignUp = ({navigation, addUser}) => {
     //     }
     // }
 
+    // const onPressYes = () => {
+    //     setHasLocationPermission(true);
+    //     if (hasLocationPermission) {
+    //         getLocation()
+    //     }
+    // }
+
+    // const getLocation = () => {
+    //     Geolocation.getCurrentPosition(
+    //         (position) => {
+    //             console.log(position);
+    //         },
+    //         (error) => {
+    //             // See error code charts below.
+    //             console.log(error.code, error.message);
+    //         },
+    //         { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+    //     );
+    // }
+
+    // const handleLocationServicePermission = () => {
+    //     return (
+    //         <View style={{position: 'absolute', top: -100, alignSelf: 'center'}}>
+    //             <Image source={LogoPicture} style={{resizeMode: 'contain', width: 170, height: 170}} />
+    //             <Text>Gust would like to access your location</Text>
+    //             <Button title="yes" onPress={onPressYes} />
+    //             <Button title="no" onPress={onPressNo} />
+    //         </View>
+    //     )
+    // }
+
     return(
 
     <View style={{flex: 1}}>
         <AuthHeader />
         <View style={{top: 15, justifyContent: 'center', alignItems: 'center'}}>
+
         { nextPress ? 
+
         <>
             <View style={{position: 'absolute', top: -100, alignSelf: 'center'}}>
                     <Image source={LogoPicture} style={{resizeMode: 'contain', width: 170, height: 170}} />
@@ -88,6 +121,7 @@ const SignUp = ({navigation, addUser}) => {
             <View style={{top: -20}}>
                 <Button title="SUBMIT!" buttonStyle={{borderRadius: 10, borderWidth: 1, borderColor: '#2FA8F8', padding: 5}} onPress={handleSubmit} />
             </View>
+
         </>
         
         :  

@@ -16,7 +16,7 @@ const LoginForm = ({navigation, handleLoginSubmit, styles, LogoPicture}) => {
         <>
             <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
 
-                <TextInput style={styles.input} autoCapitalize='none' textContentType="username" placeholder="username" onChangeText={(e) => setUser({...user, username: e})} onSubmitEditing={() => handleLoginSubmit(user)} />
+                <TextInput style={styles.input} autoCapitalize='none' textContentType="username" placeholder="username" onChangeText={(e) => setUser({...user, username: e.trim()})} onSubmitEditing={() => handleLoginSubmit(user)} />
                 <TextInput style={styles.input} autoCapitalize='none' secureTextEntry={true} placeholder="password" onChangeText={(e) => setUser({...user, password: e})} onSubmitEditing={() => handleLoginSubmit(user)} />
             
                 <Button color={'#106AA1'} style={styles.button} title="Log In!" onPress={() => handleLoginSubmit(user)} />

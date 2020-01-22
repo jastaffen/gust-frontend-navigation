@@ -18,6 +18,7 @@ import FollowedArtistContainer from './containers/FollowedArtistContainer';
 import Login from './components/user_auth/Login';
 import SignUp from './components/user_auth/SignUp';
 import UpcomingShows from './containers/UpcomingShows';
+import AuthLoading from './components/user_auth/AuthLoading';
 //Imports
 import HomeScreenImage from './images/homescreen.png'
 import FollowedArtistsImage from './images/favoriteartists.png';
@@ -135,6 +136,9 @@ const MainTabs = createBottomTabNavigator({
   const MainApp = createSwitchNavigator(
 
     {
+    authLoading: {
+      screen: AuthLoading
+    },
     app: AppDrawer,
     auth: AuthStack
     },
@@ -145,8 +149,6 @@ const MainTabs = createBottomTabNavigator({
 const Main = createAppContainer(MainApp);  
 
 const store = configureStore();
-
-// const GustApp = createAppContainer(Main);
   
   
   const Gust = () => (
