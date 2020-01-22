@@ -9,7 +9,6 @@ import { fetchArtists } from '../../requests';
 
 const SearchArtists = ({navigation, spotifyToken, selectedArtist, getArtists}) => {
 
-    const getInputRef = () => this.input;
 
     const [searchText, setSearchText] = useState('');
 
@@ -36,7 +35,7 @@ const SearchArtists = ({navigation, spotifyToken, selectedArtist, getArtists}) =
 
     return (
 
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}} onPress={() => Keyboard.dismiss()}>
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
 
             <View style={styles.formContainer}>
 

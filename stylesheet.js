@@ -35,6 +35,9 @@ export const styles = StyleSheet.create({
         height: 40,
         color: '#2FA8F8'
     },
+    authLoader: {
+        color: '#2FA8F8'
+    },
     imageStyle: {
         padding: 10,
         margin: 5,

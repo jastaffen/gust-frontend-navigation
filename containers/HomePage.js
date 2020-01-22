@@ -1,6 +1,6 @@
 //React
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, TextInput, AsyncStorage } from 'react-native'
+import { View, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import { connect } from 'react-redux';
 //Components
 import Header from '../components/Header';
@@ -8,16 +8,16 @@ import SearchArtist from '../components/artists/SearchArtist';
 //imports
 import { getSpotifyToken, followedArtists } from '../requests';
 
-
-const HomePage = ({navigation, setSpotifyToken, fetchFollows, userToken}) => {
+//setSpotifyToken
+const HomePage = ({navigation, fetchFollows, userToken}) => {
 
     const [isMounted, setMounted] = useState(false)
 
 
-    useEffect(() => {
-      getSpotifyToken()
-      .then(token => setSpotifyToken(token.access_token))
-    }, [])
+    // useEffect(() => {
+    //   getSpotifyToken()
+    //   .then(token => setSpotifyToken(token.access_token))
+    // }, [])
 
     useEffect(() => {
       followedArtists(userToken)
@@ -26,18 +26,22 @@ const HomePage = ({navigation, setSpotifyToken, fetchFollows, userToken}) => {
     }, [])
 
     return(
-        
-      <View style={{flex: 1}}>
 
-        <Header navigation={navigation} isHome={true} />
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
 
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{flex: 1}}>
 
-            {isMounted ? <SearchArtist navigation={navigation} /> : null}
+          <Header navigation={navigation} isHome={true} />
+
+          <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+
+              {isMounted ? <SearchArtist navigation={navigation} /> : null}
+
+          </View>
 
         </View>
-
-      </View>
+        
+      </TouchableWithoutFeedback>
     )
 };
 

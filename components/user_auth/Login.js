@@ -23,20 +23,14 @@ const Login = ({navigation, loading, loadingScreen, addingUser}) => {
                 if (obj.error) {
                     Alert.alert(obj.error)
                 } else {
-                   
                     addingUser(obj.user, obj.jwt);
-                    navigation.navigate('app');
+                    navigation.navigate('authLoading');
                 }
             })
         } else {
             Alert.alert('Something is blank...')
         }     
     }
-
-    // const _signInAsync = async (jwt) => {
-    //     await AsyncStorage.setItem('userToken', jwt);
-    //     navigation.navigate('authLoading');
-    // }
 
     return(
 
