@@ -33,16 +33,11 @@ const spotifyReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                selectedArtist: action.selectedArtist
+                selectedArtist: action.selectedArtist,
+                albums: null,
             }
         
-        case "DESELECT_ARTIST":
-            return {
-                ...state,
-
-                albums: null,
-                tracks: null
-            }
+        
 
         case "GET_ALBUMS":
             return {
