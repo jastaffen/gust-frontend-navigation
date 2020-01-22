@@ -1,6 +1,6 @@
 //React
 import React, {useState} from 'react';
-import { View, TextInput, Image, TouchableHighlight, Text, Alert } from 'react-native';
+import { View, TextInput, Image, TouchableHighlight, Text, Alert, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 //Imports
 import SearchIcon from '../../images/search.png';
@@ -8,6 +8,8 @@ import { styles } from '../../stylesheet';
 import { fetchArtists } from '../../requests';
 
 const SearchArtists = ({navigation, spotifyToken, selectedArtist, getArtists}) => {
+
+    const getInputRef = () => this.input;
 
     const [searchText, setSearchText] = useState('');
 
@@ -34,7 +36,7 @@ const SearchArtists = ({navigation, spotifyToken, selectedArtist, getArtists}) =
 
     return (
 
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}} onPress={() => Keyboard.dismiss()}>
 
             <View style={styles.formContainer}>
 

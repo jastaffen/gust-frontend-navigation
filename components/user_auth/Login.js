@@ -1,6 +1,6 @@
 //React
 import React from 'react';
-import { View, Alert } from 'react-native';
+import { View, Alert, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 //Components
 import AuthHeader from './AuthHeader';
@@ -14,7 +14,7 @@ import { styles } from '../../stylesheet';
 import { login } from '../../requests';
 
 const Login = ({navigation, loading, loadingScreen, addingUser}) => {
-    
+
     const handleLoginSubmit = (user) => {
         if (user.username && user.password) {
             loadingScreen()
@@ -23,7 +23,7 @@ const Login = ({navigation, loading, loadingScreen, addingUser}) => {
                 if (obj.error) {
                     Alert.alert(obj.error)
                 } else {
-                    // console.log(obj.jwt)
+                   
                     addingUser(obj.user, obj.jwt);
                     navigation.navigate('app');
                 }
@@ -35,7 +35,7 @@ const Login = ({navigation, loading, loadingScreen, addingUser}) => {
 
     // const _signInAsync = async (jwt) => {
     //     await AsyncStorage.setItem('userToken', jwt);
-    //     navigation.navigate('app');
+    //     navigation.navigate('authLoading');
     // }
 
     return(
@@ -60,7 +60,7 @@ const Login = ({navigation, loading, loadingScreen, addingUser}) => {
 
 const msp = state => {
     return {
-        loading: state.isLoading
+        loading: state.isLoading,
     }
 }
 
