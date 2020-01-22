@@ -17,9 +17,11 @@ import EditProfile from './components/EditProfile';
 import FollowedArtistContainer from './containers/FollowedArtistContainer';
 import Login from './components/user_auth/Login';
 import SignUp from './components/user_auth/SignUp';
+import UpcomingShows from './containers/UpcomingShows';
 //Imports
 import HomeScreenImage from './images/homescreen.png'
 import FollowedArtistsImage from './images/favoriteartists.png';
+import UpcomingShowsLogo from './images/upcomingshows.png';
 import configureStore from './store/configureStore';
 
 
@@ -93,6 +95,17 @@ const MainTabs = createBottomTabNavigator({
     navigationOptions: ({navigation}) => {
       return {
         tabBarIcon: () => <Image source={FollowedArtistsImage} style={{width: 20, height: 20}} />,
+        tabBarOnPress: ({navigation, defaultHandler}) => {
+          defaultHandler();
+        }
+      }
+    }
+  },
+  UpcomingShows: {
+    screen: UpcomingShows,
+    navigationOptions: ({navigation}) => {
+      return {
+        tabBarIcon: () => <Image source={UpcomingShowsLogo} style={{width: 20, height: 20}} />,
         tabBarOnPress: ({navigation, defaultHandler}) => {
           defaultHandler();
         }
