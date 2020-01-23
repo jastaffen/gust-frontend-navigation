@@ -2,7 +2,7 @@ import Base64 from './Base64.ts';
 
 const headers = { 'Content-Type': "application/json", "Accept": "application/json"};
 
-const backendURL = 'http://e4379330.ngrok.io';
+const backendURL = 'http://localhost:3000';
 
 const usersUrl = backendURL + "/api/v1/users";
 const loginUrl = backendURL + "/api/v1/login";
@@ -188,8 +188,6 @@ export const followedArtists = (userToken) => fetch(backendURL + `/api/v1/follow
     .catch(catchError)
 
 // ***********************UpcomingShows*************************//
-
-
 
 
 export const getArtistSongKickId = (artistName) => fetch(`https://api.songkick.com/api/3.0/search/artists.json?apikey=${sk_key}&query=${artistName}

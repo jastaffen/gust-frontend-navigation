@@ -16,7 +16,6 @@ const UpcomingShows = ({navigation, follows}) => {
     const [upcomingShows, setUpcomingShows] = useState(null);
     const [activeButton, setActiveButton] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    // const [searchText, setSearchText] = useState(null);
     
 
     useEffect(() => {
@@ -33,10 +32,11 @@ const UpcomingShows = ({navigation, follows}) => {
 
     // const handleSearchText = text => {
     //     setSearchText(text);
-    //     if (upcomingShows) {
-    //         let showsToDisplay = [...upcomingShows]
-    //         setUpcomingShows(showsToDisplay.filter(show => show.location.city.toLowerCase().includes(searchText.toLowerCase())));
+    //     let showsToDisplay = [...upcomingShows];
+    //     if (upcomingShows && searchText) {
+    //         showsToDisplay = showsToDisplay.filter(show => show.location.city.toLowerCase().includes(searchText.toLowerCase()))
     //     }
+    //     setUpcomingShows(showsToDisplay);
     // }
 
     const handleUpcomingShowButtonPress = (name, id) => {
@@ -75,13 +75,10 @@ const UpcomingShows = ({navigation, follows}) => {
 
             </View> 
             
-            {/* <View style={{position: 'absolute', width: 200, top: 280, alignSelf: 'center', zIndex: 1000}}>
-                <TextInput style={{backgroundColor: 'white', borderWidth: 1, height: 40}} value={searchText} onChangeText={(text) => handleSearchText(text)} />
-            </View>   */}
 
             { isLoading ? <Loader /> :
 
-            <View style={{flex: 1, top: -60, position: 'relative'}}>
+            <View style={{flex: 1, top: -40}}>
             
                 { upcomingShows ? <Shows upcomingShows={upcomingShows} /> : null}
 
