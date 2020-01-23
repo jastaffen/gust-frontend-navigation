@@ -45,6 +45,7 @@ export const login = (user) => fetch(loginUrl, {
 
 
 
+
 //Spotify
 let spotifyToken;
 let formattedName;
@@ -144,6 +145,15 @@ export const deleteVote = (voteId, userToken) => fetch(backendURL +`/api/v1/vote
         'Authorization': `Bearer ${userToken}`
     }})
 
+export const allVotes = () => fetch(backendURL + '/api/v1/votes/all', {
+    method: "GET",
+    headers: {
+        'Content-Type': "application/json",
+        Accept: "application/json",
+    }})
+    .then(parseData)
+    .catch(catchError)
+
 /****************************FOLLOWS*******************************/
 
 export const followArtist = (artistId, largeArtistImage, mediumArtistImage, smallArtistImage, artistName, userId, userToken) => fetch(backendURL + `/api/v1/follows`, {
@@ -189,7 +199,6 @@ export const followedArtists = (userToken) => fetch(backendURL + `/api/v1/follow
 
 // ***********************UpcomingShows*************************//
 
-
 export const getArtistSongKickId = (artistName) => fetch(`https://api.songkick.com/api/3.0/search/artists.json?apikey=${sk_key}&query=${artistName}
 `, {
     method: 'GET',
@@ -197,7 +206,6 @@ export const getArtistSongKickId = (artistName) => fetch(`https://api.songkick.c
     })
     .then(parseData)
     .then(obj => {
-        // console.log(obj.resultsPage.results.artist[0])
         if (obj.resultsPage.results.artist[0].onTourUntil) {
             let artistSKID = obj.resultsPage.results.artist[0].id;
             return fetch(`https://api.songkick.com/api/3.0/artists/${artistSKID}/calendar.json?apikey=${sk_key}`, {
@@ -210,5 +218,7 @@ export const getArtistSongKickId = (artistName) => fetch(`https://api.songkick.c
             return obj.resultsPage.results.artist[0]
         }
     })
+
+
     
 

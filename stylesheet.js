@@ -141,6 +141,16 @@ export const styles = StyleSheet.create({
         borderColor: '#1F60E0', 
         borderRadius: 10,
         backgroundColor: '#2FA8F8',
+    },
+    trackCard: {
+        flex: 1, 
+        alignSelf: 'stretch', 
+        backgroundColor: 'black', 
+        borderWidth: 1, 
+        borderColor: 'white', 
+        borderRadius: 10, 
+        padding: 30, 
+        width: width
     }
     
 });
