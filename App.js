@@ -26,6 +26,7 @@ import FollowedArtistsImage from './images/favoriteartists.png';
 import UpcomingShowsLogo from './images/upcomingshows.png';
 import TopCharts from './images/topcharts.png'
 import configureStore from './store/configureStore';
+import { allVotes } from './requests';
 
 
 

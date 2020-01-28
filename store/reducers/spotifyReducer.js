@@ -79,6 +79,7 @@ const spotifyReducer = (state = initialState, action) => {
                     return track
                 }
             })
+            
             return {
                 ...state,
                 tracks: handledTracks

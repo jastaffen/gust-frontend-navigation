@@ -36,7 +36,7 @@ const ArtistPage = ({navigation, spotifyToken, selectedArtist, country, loadingS
                 navigation.navigate('Home');
             } else {
                 unfollowArtist(selectedArtist.id, userData.jwt)
-                .then(obj => console.log(obj))
+                .then(obj => unFollow(obj.follow))
                 setFollowed(false);
             }
             

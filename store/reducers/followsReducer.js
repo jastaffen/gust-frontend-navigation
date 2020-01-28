@@ -18,9 +18,7 @@ const followsReducer = (state = initialState, action) => {
             }
         
         case 'UNFOLLOW':
-            console.log(action.follow)
             let followsWithoutUnFollowed = [...state.follows].filter(follow => follow.id !== action.follow.id);
-            console.log('followswithout', followsWithoutUnFollowed)
             return {
                 ...state,
                 follows: followsWithoutUnFollowed
