@@ -13,6 +13,8 @@ import sk from '../images/sk-badge-black.png'
 
 const UpcomingShows = ({navigation, follows}) => {
 
+
+
     const [upcomingShows, setUpcomingShows] = useState(null);
     const [activeButton, setActiveButton] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -29,15 +31,6 @@ const UpcomingShows = ({navigation, follows}) => {
         setActiveButton(null)
         setUpcomingShows(null)
     }, [follows])
-
-    // const handleSearchText = text => {
-    //     setSearchText(text);
-    //     let showsToDisplay = [...upcomingShows];
-    //     if (upcomingShows && searchText) {
-    //         showsToDisplay = showsToDisplay.filter(show => show.location.city.toLowerCase().includes(searchText.toLowerCase()))
-    //     }
-    //     setUpcomingShows(showsToDisplay);
-    // }
 
     const handleUpcomingShowButtonPress = (name, id) => {
         setActiveButton(id);
@@ -65,10 +58,10 @@ const UpcomingShows = ({navigation, follows}) => {
             <View style={styles.upcomingShowsContainer}>
 
 
-                <SafeAreaView style={{flex: 1, justifyContent: 'center', alignContent: 'center', alignItems: 'center', top: 60, height: 200}}>
-                    <FlatList horizontal={false} style={{flexDirection: 'column'}} numColumns={2} data={follows} renderItem={({item}) => (
+                <SafeAreaView style={{flex: 1, justifyContent: 'center', alignContent: 'center', alignItems: 'center', top: 60, height: 200, borderBottomWidth: 1, borderBottomColor: 'black'}}>
+                    <FlatList showsVerticalScrollIndicator={false} horizontal={false} style={{flexDirection: 'column'}} numColumns={2} data={follows}  renderItem={({item}) => (
                         <TouchableHighlight  key={item.id} id={item.id} activeOpacity={0.3} style={activeButton === item.id ? styles.upcomingShowsButtonActive : styles.upcomingShowsButtonInactive} underlayColor={'#2FA8F8'}  onPress={() => handleUpcomingShowButtonPress(item.artistName, item.id)}>
-                        <Text style={{fontSize: 14}}>{item.artistName}</Text>
+                        <Text style={activeButton === item.id ? {fontSize: 14, color: '#7AC6F9'} : {fontSize: 14, color: '#2FA8F8'}}>{item.artistName}</Text>
                     </TouchableHighlight>
                     )} />
                 </SafeAreaView>
@@ -78,7 +71,7 @@ const UpcomingShows = ({navigation, follows}) => {
 
             { isLoading ? <Loader /> :
 
-            <View style={{flex: 1, top: -40}}>
+            <View style={{flex: 1, top: -70}}>
             
                 { upcomingShows ? <Shows upcomingShows={upcomingShows} /> : null}
 

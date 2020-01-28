@@ -25,6 +25,11 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "extra": {
+      "client_id": "f72960c5793348cbbb950fbad5795195",
+      "client_secret": "77b229c0efff4d2a9bee3d79a0e6b3a1",
+      "sk_key": "65cYlbDBmyNRsCze"
     }
   }
 }

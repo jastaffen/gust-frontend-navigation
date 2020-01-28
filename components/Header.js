@@ -8,6 +8,7 @@ let height = Dimensions.get('window').height;
 //Imports
 import LogoPicture from '../images/gustlogo.jpg'
 import GoBack from '../images/gobackthin.png';
+import { styles } from '../stylesheet';
 
 
 const Header = ({navigation, firstName, isHome}) => {
@@ -42,23 +43,23 @@ const msp = state => {
 
 export default connect(msp)(Header);
 
-const styles = StyleSheet.create({
-    homePageHeaderContainer: {
-        flexDirection: 'row',
-        top: 20,
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        alignContent: 'center',
-    },
-    mainText: {
-        color: '#2FA8F8',
-        fontSize: 30,
-        alignSelf: 'center',
-    },
-    welcome: {
-        color: '#2FA8F8',
-        fontSize: 10,
-        right: 10,
-        fontWeight: 'bold'
-    },
-})
+// const styles = StyleSheet.create({
+//     homePageHeaderContainer: {
+//         flexDirection: 'row',
+//         top: 20,
+//         justifyContent: 'space-between',
+//         alignItems: 'center',
+//         alignContent: 'center',
+//     },
+//     mainText: {
+//         color: '#2FA8F8',
+//         fontSize: 30,
+//         alignSelf: 'center',
+//     },
+//     welcome: {
+//         color: '#2FA8F8',
+//         fontSize: 10,
+//         right: 10,
+//         fontWeight: 'bold'
+//     },
+// })

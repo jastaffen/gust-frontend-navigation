@@ -3,6 +3,24 @@ import { StyleSheet, Dimensions } from 'react-native';
 const width = Dimensions.get('window').width
 
 export const styles = StyleSheet.create({
+    homePageHeaderContainer: {
+        flexDirection: 'row',
+        top: 20,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        alignContent: 'center',
+    },
+    mainText: {
+        color: '#2FA8F8',
+        fontSize: 30,
+        alignSelf: 'center',
+    },
+    welcome: {
+        color: '#2FA8F8',
+        fontSize: 10,
+        right: 10,
+        fontWeight: 'bold'
+    },
     input: {
         backgroundColor: '#D8EEFC',
         color: '#6769F8',
@@ -133,6 +151,8 @@ export const styles = StyleSheet.create({
         borderColor: '#1F60E0', 
         borderRadius: 10,
         backgroundColor: '#fff',
+        maxWidth: 125,
+        minWidth: 125
     },
     upcomingShowsButtonActive: {
         margin: 4, 
@@ -141,6 +161,8 @@ export const styles = StyleSheet.create({
         borderColor: '#1F60E0', 
         borderRadius: 10,
         backgroundColor: '#2FA8F8',
+        maxWidth: 125,
+        minWidth: 125
     },
     trackCard: {
         flex: 1, 

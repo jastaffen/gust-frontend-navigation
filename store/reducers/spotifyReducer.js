@@ -69,7 +69,6 @@ const spotifyReducer = (state = initialState, action) => {
             }
             
         case "DELETE_VOTE":
-            
             let trackWithoutVote = action.track.votes.filter(vote => vote.id !== action.vote.id);
             let downvotedTrack = action.track.votes = trackWithoutVote
             

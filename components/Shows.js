@@ -12,13 +12,6 @@ const width = Dimensions.get('window').width
 
 const Shows = ({upcomingShows}) => {
 
-    // const [searchText, setSearchText] = useState(null);
-    // upcomingShows.forEach(show => {
-    //     if (show.venue.displayName === 'Unknown venue') {
-    //         console.log(show.series.displayName)
-    //     }
-    // })
-
     useEffect(() => {
         upcomingShows
     }, [upcomingShows])
@@ -35,15 +28,15 @@ const Shows = ({upcomingShows}) => {
         return newDate
     }
 
-    return(
+    return (
 
     <>      
 
-        <SafeAreaView style={{flex: 5, justifyContent: 'center', alignSelf: 'center', top: 20, height: 450}}>
+        <SafeAreaView style={{flex: 5, justifyContent: 'center', alignSelf: 'center', top: 20, height: 555}}>
             
-            <FlatList horizontal={false} showsVerticalScrollIndicator={false} data={upcomingShows} style={{flexDirection: 'column'}} numColumns={2} contentContainerStyle={{paddingBottom: 40}} renderItem={({item}) => (
+            <FlatList horizontal={false} showsVerticalScrollIndicator={false} data={upcomingShows} style={{flexDirection: 'column'}} numColumns={2} contentContainerStyle={{paddingBottom: 20}} renderItem={({item}) => (
 
-                <View style={{borderWidth: 1, borderColor: 'blue', borderRadius: 10, margin: 5, width: 150, justifyContent: 'center', alignItems: 'center', padding: 20}}>
+                <View style={{borderWidth: 2, borderColor: '#2FA8F8', borderRadius: 10, margin: 5, width: 150, justifyContent: 'center', alignItems: 'center', padding: 20}}>
                     <Text>{handleDates(item.start.date)}</Text>
                     <Image source={UpcomingShowsLogo} style={{width: 60, height: 60}} />
                     <Text style={{fontSize: 10}}>{item.venue.displayName}</Text>
