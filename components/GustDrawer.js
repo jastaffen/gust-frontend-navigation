@@ -1,15 +1,17 @@
 //React
 import React from 'react';
 import { SafeAreaView, ScrollView, Text, Button, View } from 'react-native';
+import { connect } from 'react-redux';
+//imports
+import { styles } from '../stylesheet';
 
-
-const GustDrawer = ({navigation}) => {
+const GustDrawer = ({navigation, username}) => {
 
     return(
       <SafeAreaView style={{flex: 1}}>
 
         <View style={{height: 150, alignItems: 'center', justifyContent: 'center'}}>
-          <Text>Username Here</Text>
+          <Text style={styles.mainText}>{username}</Text>
         </View>
 
         <ScrollView>
@@ -27,4 +29,10 @@ const GustDrawer = ({navigation}) => {
 
 }
 
-export default GustDrawer;
+const msp = state => {
+  return {
+    username: state.userAuth.user.username
+  }
+}
+
+export default connect(msp)(GustDrawer);

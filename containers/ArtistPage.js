@@ -83,14 +83,14 @@ const ArtistPage = ({navigation, spotifyToken, selectedArtist, country, loadingS
 
                                 <TouchableHighlight style={isFollowed ? [styles.followButton, styles.followed] : [styles.followButton, styles.notFollowed]} onPress={handleFollow}>
                                     <Text style={{textAlign: 'center', color: 'white'}}>{isFollowed ? 'Unfollow' : 'Follow'}</Text>
-                                </TouchableHighlight>      
+                                </TouchableHighlight>
 
                     </ImageBackground>
 
                     <SafeAreaView  style={{top: -80, zIndex: 20}}>
-                        {/* <ScrollView horizontal pagingEnabled showsHorizontalScrollIndicator={false} style={{top: -90, zIndex: 20}}> */}
+
                             {!albums ? <AlbumLoadingScreen /> : <AlbumCarousel navigation={navigation} albums={albums} spotifyToken={spotifyToken} /> }
-                        {/* </ScrollView> */}
+                        
                     </SafeAreaView>
                     
                 </ScrollView>

@@ -10,6 +10,13 @@ import ArtistCard from '../components/artists/ArtistCard';
 
 const FollowedArtistContainer = ({navigation, follows}) => {
 
+    useEffect(() => {
+        follows
+    }, [])
+
+    useEffect(() => {
+        follows
+    }, [follows])
 
     return(
 
