@@ -19,9 +19,7 @@ const TrackCard = ({track, selectedArtist, userData, albumName, addVote, deleteU
     useEffect(() => {
         if (track.votes.length > 0) {
             track.votes.forEach(vote => {
-                console.log('in loop')
                 if (vote.userId === userData.user.id) {
-                    console.log('checking in loop')
                     setIsClicked(true)
                 } 
             })
@@ -30,7 +28,7 @@ const TrackCard = ({track, selectedArtist, userData, albumName, addVote, deleteU
 
 
     const handleVotePress = () => {
-
+        
         if (selectedArtist.artistName) {
             if (!isClicked) {
                 setIsClicked(true);
@@ -42,10 +40,11 @@ const TrackCard = ({track, selectedArtist, userData, albumName, addVote, deleteU
             } else {
                 let voteToDelete = track.votes.find(vote => vote.userId === userData.user.id);
                 setIsClicked(false);
-                setVoteCount(voteCount - 1)
+                
                 if (voteToDelete) {
                     deleteVote(voteToDelete.id, userData.jwt);
                     deleteUserVote(track, voteToDelete);
+                    setVoteCount(voteCount - 1);
                 } 
             }
         } else {
@@ -59,13 +58,13 @@ const TrackCard = ({track, selectedArtist, userData, albumName, addVote, deleteU
             } else {
                 let voteToDelete = track.votes.find(vote => vote.userId === userData.user.id);
                 setIsClicked(false);
-                setVoteCount(voteCount - 1);
+                
                 if (voteToDelete) {
                     deleteVote(voteToDelete.id, userData.jwt);
                     deleteUserVote(track, voteToDelete);
+                    setVoteCount(voteCount - 1);
                 }
-                
-                
+            
             } 
         }
         

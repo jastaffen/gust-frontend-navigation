@@ -1,6 +1,6 @@
 //React
 import React, {useState, useEffect} from 'react';
-import { FlatList, SafeAreaView, View, Text, Alert } from 'react-native';
+import { FlatList, SafeAreaView, View, Text, Alert, RefreshControl } from 'react-native';
 import { connect } from 'react-redux'
 //Components
 import Header from '../components/Header';
@@ -12,34 +12,50 @@ import { styles } from '../stylesheet';
 const Charts = ({navigation, tracks}) => {
 
     const [topVotes, setTopVotes] = useState(null);
+    const [refreshing, setRefreshing] = useState(false);
+    // useEffect(() => {
+    //     allVotes()
+    //     .then(obj => {
+    //         if (obj.error) {
+    //             Alert.alert('something went wrong')
+    //         } else {
+    //             let sortedVotes = obj.votes.sort((objA, objB) => objB.vote.voteCount - objA.vote.voteCount)
+    //             setTopVotes(sortedVotes)
+    //         }
+    //     }   
+    //  )}, [])
 
-    useEffect(() => {
+     useEffect(() => {
+
         allVotes()
         .then(obj => {
             if (obj.error) {
                 Alert.alert('something went wrong')
             } else {
-                let sortedVotes = obj.votes.sort((objA, objB) => objB.vote.voteCount - objA.vote.voteCount)
-                setTopVotes(sortedVotes)
+                let sortedVotes = obj.votes.sort((objA, objB) => objB.vote.voteCount - objA.vote.voteCount)                
+                setTopVotes(sortedVotes);
+                console.log('state changed 1')
             }
         }
          
      )}, [])
 
-     useEffect(() => {
-        allVotes()
+    const handleRefresh = async () => {
+        setRefreshing(true);
+        await allVotes()
         .then(obj => {
             if (obj.error) {
                 Alert.alert('something went wrong')
             } else {
-                let sortedVotes = obj.votes.sort((objA, objB) => objB.vote.voteCount - objA.vote.voteCount)
-                setTopVotes(sortedVotes)
+                let sortedVotes = obj.votes.sort((objA, objB) => objB.vote.voteCount - objA.vote.voteCount)                
+                setTopVotes(sortedVotes);
+                setRefreshing(false)
             }
-        }
-         
-     )}, [tracks])
+        })
+    }
 
-    return(
+    return (
+
         <View style={{flex: 1}}>
             <Header navigation={navigation} />
 
@@ -58,11 +74,12 @@ const Charts = ({navigation, tracks}) => {
 
                     </View>
 
-                )} /> : <Loader />}
+                )} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />} /> : <Loader />}
 
             </SafeAreaView>
 
         </View>
+
     )
 }
 
