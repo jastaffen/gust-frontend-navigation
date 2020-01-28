@@ -1,6 +1,9 @@
-import Constants from 'expo-constants';
+import { REACT_APP_CLIENT_I, REACT_APP_CLIENT_S, REACT_APP_SK_KEY } from 'react-native-dotenv';
 
 import Base64 from './Base64.ts';
+
+
+
 
 const headers = { 'Content-Type': "application/json", "Accept": "application/json"};
 
@@ -44,8 +47,8 @@ export const login = (user) => fetch(loginUrl, {
     .catch(catchError)
 
 /****************************SPOTIFY******************************/
-const clientId = Constants.manifest.extra.client_id;
-const clientSecret = Constants.manifest.extra.client_secret;
+const clientId = REACT_APP_CLIENT_I
+const clientSecret = REACT_APP_CLIENT_S
 const base64 = Base64.btoa(`${clientId}:${clientSecret}`);
     
 
@@ -201,7 +204,7 @@ export const followedArtists = (userToken) => fetch(backendURL + `/api/v1/follow
     .catch(catchError)
 
 // ***********************UpcomingShows*************************//
-const sk_key = Constants.manifest.extra.sk_key;
+const sk_key = REACT_APP_SK_KEY;
 
 
 export const getArtistSongKickId = (artistName) => fetch(`https://api.songkick.com/api/3.0/search/artists.json?apikey=${sk_key}&query=${artistName}
