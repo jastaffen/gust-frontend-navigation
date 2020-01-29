@@ -13,18 +13,7 @@ const Charts = ({navigation, tracks}) => {
 
     const [topVotes, setTopVotes] = useState(null);
     const [refreshing, setRefreshing] = useState(false);
-    // useEffect(() => {
-    //     allVotes()
-    //     .then(obj => {
-    //         if (obj.error) {
-    //             Alert.alert('something went wrong')
-    //         } else {
-    //             let sortedVotes = obj.votes.sort((objA, objB) => objB.vote.voteCount - objA.vote.voteCount)
-    //             setTopVotes(sortedVotes)
-    //         }
-    //     }   
-    //  )}, [])
-
+    
      useEffect(() => {
 
         allVotes()

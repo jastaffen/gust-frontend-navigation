@@ -8,15 +8,22 @@ import ArtistCard from '../components/artists/ArtistCard';
 
 
 
-const FollowedArtistContainer = ({navigation, follows}) => {
+const FollowedArtistContainer = ({navigation, follows, selectedArtist, deselectArtist}) => {
+
+    const [sortedFollows, setSortedFollows] = useState(null);
 
     useEffect(() => {
-        follows
+        let alphaSortedFollows = follows.sort((followA, followB) => followA.artistName.localeCompare(followB.artistName));
+        setSortedFollows(alphaSortedFollows);
+    }, [follows])
+
+    useEffect(() => {
+        selectedArtist ? deselectArtist() : null
     }, [])
 
-    useEffect(() => {
-        console.log(follows)
-    }, [follows])
+    // useEffect(() => {
+    //     follows
+    // }, [follows])
 
     return(
 
@@ -36,9 +43,16 @@ const FollowedArtistContainer = ({navigation, follows}) => {
 
 const msp = state => {
     return {
+        selectedArtist: state.spotify.selectedArtist,
         follows: state.follows.follows
     }
 }
 
+const mdp = dispatch => {
+    return {
+        deselectArtist: () => dispatch({type: "DESELECT_ARTIST"})
+    }
+}
 
-export default connect(msp)(FollowedArtistContainer);
+
+export default connect(msp, mdp)(FollowedArtistContainer);
