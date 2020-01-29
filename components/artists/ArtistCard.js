@@ -10,7 +10,6 @@ const width = Dimensions.get('window').width;
 const ArtistCard = ({navigation, artist, selectedArtist, followedArtist}) => {
 
     
-    
     const handleArtistCardPress = () => {
         selectedArtist(artist);
         navigation.navigate('Artist', {followedArtist});
