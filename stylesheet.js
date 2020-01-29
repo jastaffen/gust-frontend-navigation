@@ -42,7 +42,7 @@ export const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderWidth: 1,
         borderColor: '#2FA8F8',
-        height: 40,
+        height: 60,
         margin: 10,
         width: 260,
     },
@@ -51,7 +51,8 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 10,
         paddingVertical: 10,
         height: 40,
-        color: '#2FA8F8'
+        color: '#2FA8F8',
+        fontSize: 18
     },
     authLoader: {
         color: '#2FA8F8'
@@ -66,11 +67,10 @@ export const styles = StyleSheet.create({
     },
     searchButton: {
         color: '#2FA8F8', 
-        fontSize: 15, 
-        // fontWeight: 'bold', 
+        fontSize: 18, 
         borderWidth: 1, 
         borderColor: '#2FA8F8', 
-        padding: 8, 
+        padding: 12, 
         borderRadius: 10
     },
     dymArtistContainer: {

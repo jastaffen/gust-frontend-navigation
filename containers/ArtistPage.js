@@ -56,6 +56,7 @@ const ArtistPage = ({navigation, spotifyToken, selectedArtist, country, loadingS
     }, []);
 
     useEffect(() => {
+        loadingScreen();
         alreadyFollowed();
         if (navigation.getParam('followedArtist')) {
             fetchArtistAlbums(spotifyToken, selectedArtist.apiArtistId, country)

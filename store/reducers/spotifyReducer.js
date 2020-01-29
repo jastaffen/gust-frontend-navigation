@@ -37,7 +37,12 @@ const spotifyReducer = (state = initialState, action) => {
                 albums: null,
             }
         
-        
+        case "DESELECT_ARTIST":
+            return {
+                ...state,
+                selectedArtist: null,
+                albums: null
+            }
 
         case "GET_ALBUMS":
             return {
@@ -79,7 +84,7 @@ const spotifyReducer = (state = initialState, action) => {
                     return track
                 }
             })
-            
+
             return {
                 ...state,
                 tracks: handledTracks

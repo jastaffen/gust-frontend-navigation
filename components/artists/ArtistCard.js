@@ -9,9 +9,7 @@ const width = Dimensions.get('window').width;
 
 const ArtistCard = ({navigation, artist, selectedArtist, followedArtist}) => {
 
-    // useEffect(() => {
-    //     deselectArtist()
-    // }, [])
+    
     
     const handleArtistCardPress = () => {
         selectedArtist(artist);
@@ -32,7 +30,6 @@ const ArtistCard = ({navigation, artist, selectedArtist, followedArtist}) => {
 const mdp = dispatch => {
     return {
         selectedArtist: (selectedArtist) => dispatch({type: "SELECT_ARTIST", selectedArtist}),
-        // deselectArtist: () => dispatch({type: "DESELECT_ARTIST"})
     }
 }
 
