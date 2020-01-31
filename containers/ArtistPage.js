@@ -53,19 +53,19 @@ const ArtistPage = ({navigation, spotifyToken, selectedArtist, country, loadingS
             fetchArtistAlbums(spotifyToken, selectedArtist.id, country)
             .then(obj => getAlbums(obj.items))
         }
-    }, []);
-
-    useEffect(() => {
-        loadingScreen();
-        alreadyFollowed();
-        if (navigation.getParam('followedArtist')) {
-            fetchArtistAlbums(spotifyToken, selectedArtist.apiArtistId, country)
-            .then(obj => getAlbums(obj.items))
-        } else {
-            fetchArtistAlbums(spotifyToken, selectedArtist.id, country)
-            .then(obj => getAlbums(obj.items))
-        }
     }, [selectedArtist]);
+
+    // useEffect(() => {
+    //     loadingScreen();
+    //     alreadyFollowed();
+    //     if (navigation.getParam('followedArtist')) {
+    //         fetchArtistAlbums(spotifyToken, selectedArtist.apiArtistId, country)
+    //         .then(obj => getAlbums(obj.items))
+    //     } else {
+    //         fetchArtistAlbums(spotifyToken, selectedArtist.id, country)
+    //         .then(obj => getAlbums(obj.items))
+    //     }
+    // }, [selectedArtist]);
 
     return(
 

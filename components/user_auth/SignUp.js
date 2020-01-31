@@ -42,7 +42,7 @@ const SignUp = ({navigation, addUser}) => {
                 } else {
                     Alert.alert(`You've successfully created an account!`)
                     addUser(obj.user, obj.jwt);
-                    navigation.navigate('app');
+                    navigation.navigate('authLoading');
                 }
             })
         } else {
