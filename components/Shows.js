@@ -28,6 +28,7 @@ const Shows = ({upcomingShows}) => {
         return newDate
     }
 
+
     return (
 
     <>      
@@ -39,7 +40,7 @@ const Shows = ({upcomingShows}) => {
                 <View style={{borderWidth: 2, borderColor: '#2FA8F8', borderRadius: 10, margin: 5, width: 150, justifyContent: 'center', alignItems: 'center', padding: 20}}>
                     <Text>{handleDates(item.start.date)}</Text>
                     <Image source={UpcomingShowsLogo} style={{width: 60, height: 60}} />
-                    <Text style={{fontSize: 10}}>{item.venue.displayName}</Text>
+                    <Text style={{fontSize: 10}}>{item.venue.displayName === 'Unknown venue' ? item.displayName : item.venue.displayName }</Text>
                     <Text style={{fontSize: 9, marginTop: 5, fontWeight: 'bold'}}>{item.location.city}</Text>
                 </View>
 

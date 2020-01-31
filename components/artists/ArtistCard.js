@@ -1,5 +1,5 @@
 //React
-import React, {useEffect} from 'react';
+import React from 'react';
 import { ImageBackground, Text, TouchableHighlight, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 //Imports
