@@ -1,4 +1,4 @@
-import { REACT_APP_CLIENT_I, REACT_APP_CLIENT_S, REACT_APP_SK_KEY } from 'react-native-dotenv';
+import { REACT_APP_CLIENT_I, REACT_APP_CLIENT_S, REACT_APP_SK_KEY, GOOGLE_MAPS_API_KEY } from 'react-native-dotenv';
 
 import Base64 from './Base64.ts';
 
@@ -227,6 +227,12 @@ export const getArtistSongKickId = (artistName) => fetch(`https://api.songkick.c
         }
     })
 
+
+// ******************Google Maps****************************//
+
+export const reverseGeolocation = (latitude, longitude) => fetch(`https://maps.googleapis.com/maps/api/geocode/json?&key=${GOOGLE_MAPS_API_KEY}&latlng=${latitude},${longitude}`)
+    .then(parseData)
+    .catch(catchError)
 
     
 
