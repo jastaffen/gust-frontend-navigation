@@ -7,9 +7,12 @@ import AuthHeader from './AuthHeader';
 //Imports
 import countries from '../../constants/countries.js';
 import LogoPicture from '../../images/gustlogo.jpg';
-import { signUp } from '../../requests';
+import { signUp, reverseGeolocation } from '../../requests';
+
 
 const SignUp = ({navigation, addUser}) => {
+
+    const geoOptions = { enableHighAccuracy: true, timeOut: 2000, maximumAge: 60 * 60 }
 
     const [user, setUser] = useState({
         firstName: null,
@@ -17,80 +20,75 @@ const SignUp = ({navigation, addUser}) => {
         username: null,
         password: null
     });
-
-    // const [userData, setUserData] = useState(null)
-
     const [nextPress, setNextPress] = useState(false);
-
     const [city, setCity] = useState(null);
-    const [country, setCountry] = useState('AD');
+    const [state, stateSet] = useState(null);
+    const [country, setCountry] = useState(null);
+    const [ready, setReady] = useState(false);
+    // const [where, setWhere] = useState({lng: null, lat: null});
+    const [error, setError] = useState(null);
 
     const handleNextPress = () => {
+
         if (user.firstName && user.lastName && user.username && user.password) {
-            setNextPress(true)
+
+            Alert.alert('Location Permissions', 'Gust would like to access your location', [
+                {text: "No", onPress: () => handleSubmit(), style: 'cancel'},
+                {text: 'Yes', onPress: () => findLocation()}
+            ])
+
         } else {
+
             Alert.alert('You Must Fill in Blank Forms To Complete')
+
         }
     }
 
+    const findLocation = () => {
+        navigator.geolocation.getCurrentPosition(geoSuccess, geoFailure, geoOptions);
+    }
+
+    const geoSuccess = (position) => {
+        setReady(true);
+
+        reverseGeolocation(position.coords.latitude, position.coords.longitude)
+        .then(obj => {
+
+            setCity(obj.results[0].address_components[3].long_name);
+            stateSet(obj.results[0].address_components[5].long_name);
+            setCountry(obj.results[0].address_components[6].long_name);
+            
+        })
+
+    }
+
+    console.log(city, state, country);
+
+    
+    const geoFailure = (error) => {
+        setError(error.message);
+        console.log(error)
+    }
+ 
     const handleSubmit = () => {
-        if (city) {
-            signUp(user, city, country)
-            .then(obj => {
-                if (obj.error) {
-                    Alert.alert(obj.error)
-                } else {
-                    Alert.alert(`You've successfully created an account!`)
-                    addUser(obj.user, obj.jwt);
-                    navigation.navigate('authLoading');
-                }
-            })
-        } else {
-            Alert.alert('please enter a city')
-        }
+        signUp(user, city, country)
+        .then(obj => {
+            if (obj.error) {
+                Alert.alert(obj.error)
+            } else {
+                Alert.alert(`You've successfully created an account!`)
+                addUser(obj.user, obj.jwt);
+                navigation.navigate('authLoading');
+            }
+        })
     }
-
-    // const navigateToHome = (userData) => {
-    //     if (userData) {
-    //         navigation.navigate('Home', {userData: userData})
-    //     }
-    // }
-
-    // const onPressYes = () => {
-    //     setHasLocationPermission(true);
-    //     if (hasLocationPermission) {
-    //         getLocation()
-    //     }
-    // }
-
-    // const getLocation = () => {
-    //     Geolocation.getCurrentPosition(
-    //         (position) => {
-    //             console.log(position);
-    //         },
-    //         (error) => {
-    //             // See error code charts below.
-    //             console.log(error.code, error.message);
-    //         },
-    //         { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-    //     );
-    // }
-
-    // const handleLocationServicePermission = () => {
-    //     return (
-    //         <View style={{position: 'absolute', top: -100, alignSelf: 'center'}}>
-    //             <Image source={LogoPicture} style={{resizeMode: 'contain', width: 170, height: 170}} />
-    //             <Text>Gust would like to access your location</Text>
-    //             <Button title="yes" onPress={onPressYes} />
-    //             <Button title="no" onPress={onPressNo} />
-    //         </View>
-    //     )
-    // }
-
+    
     return(
-
+    
     <View style={{flex: 1}}>
+
         <AuthHeader />
+
         <View style={{top: 15, justifyContent: 'center', alignItems: 'center'}}>
 
         { nextPress ? 
@@ -100,23 +98,7 @@ const SignUp = ({navigation, addUser}) => {
                     <Image source={LogoPicture} style={{resizeMode: 'contain', width: 170, height: 170}} />
             </View>
 
-            <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
-
-                <View style={{top: -10, width: 125, justifyContent: 'center', margin: 35}}>
-                    <Text style={{padding: 30, width: 200, fontSize: 16, color: '#2FA8F8', fontWeight: 'bold'}}>Almost Done!...</Text>
-                    <TextInput autoCapitalize="words" style={styles.name} placeholder="nearest city..." value={city} onChangeText={(e) => setCity(e)} />
-                </View>
-
-                <View style={{top: -8, width: 125, justifyContent: 'center', margin: 35}}>
-
-                    <Text style={{top: 70, alignSelf: 'center'}}>Select a Country:</Text>
-                    <Picker style={{width: 100}} itemStyle={{fontSize: 10, fontWeight: 'bold', textAlign: 'center'}} selectedValue={country} onValueChange={(itemValue, itemIndex) => setCountry(itemValue)} mode="dropdown"> 
-                        {countries.map(cntry => <Picker.Item key={cntry.code} label={cntry.name} value={cntry.code} />)}
-                    </Picker>
-
-                </View>
-
-            </View> 
+            {/* where deleted old location form was located */}
 
             <View style={{top: -20}}>
                 <Button title="SUBMIT!" buttonStyle={{borderRadius: 10, borderWidth: 1, borderColor: '#2FA8F8', padding: 5}} onPress={handleSubmit} />

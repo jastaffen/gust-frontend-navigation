@@ -27,7 +27,7 @@ const AlbumCarousel = ({navigation, albums, spotifyToken, albumTracks}) => {
     return(
         
         <SafeAreaView>
-            {/* {albumsLoading ? null : null }  */}
+            
             <FlatList horizontal data={albums} showsHorizontalScrollIndicator={false} renderItem={({item}) => (
 
                 <View style={{flexDirection:'row', flexWrap: 'wrap', alignItems: 'flex-start', flex: 1}}>
