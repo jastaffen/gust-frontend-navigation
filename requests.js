@@ -18,16 +18,17 @@ const catchError = obj => console.log(obj.error)
 /****************************USER-AUTH********************************/
 
 
-export const signUp = (user, city, country) => fetch(usersUrl, {
+export const signUp = (user, city, state, country) => fetch(usersUrl, {
     method: "POST",
     headers,
     body: JSON.stringify({
         user: {
-            username: user.username,
-            password: user.password,
-            first_name: user.firstName,
-            last_name: user.lastName,
-            city: city,
+            username: user.username.trim(),
+            password: user.password.trim(),
+            first_name: user.firstName.trim(),
+            last_name: user.lastName.trim(),
+            city: city.trim(),
+            state: state,
             country: country
         }})
     })
@@ -39,8 +40,8 @@ export const login = (user) => fetch(loginUrl, {
     headers,
     body: JSON.stringify({
         user: {
-            username: user.username,
-            password: user.password
+            username: user.username.trim(),
+            password: user.password.trim()
         }})
     })
     .then(parseData)
