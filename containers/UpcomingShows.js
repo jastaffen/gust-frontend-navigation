@@ -1,6 +1,6 @@
 //React
 import React, {useState, useEffect} from 'react';
-import { View, TextInput, Text, TouchableHighlight, Alert, SafeAreaView, FlatList, Image, Keyboard } from 'react-native';
+import { View, Text, TouchableHighlight, Alert, SafeAreaView, FlatList, Image, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 //Components
 import Header from '../components/Header';
@@ -70,7 +70,9 @@ const UpcomingShows = ({navigation, follows}) => {
             
             <Header navigation={navigation} />
         
-
+        {
+            follows.length > 0 ? 
+        <>
             <View style={styles.upcomingShowsContainer}>
 
 
@@ -104,8 +106,18 @@ const UpcomingShows = ({navigation, follows}) => {
             <View style={{alignItems: 'center', bottom: 10}}>
                 <Image source={sk} style={{width: 20, height: 20}} />
             </View>
-            
+        </>
+
+        :
+
+        <View style={{flex: 1, alignSelf: 'center', justifyContent: 'center', width: 300}}>
+            <Text style={{textAlign: 'center', color: 'blue', fontSize: 18}}>
+            You haven't followed any artists yet. Search for artists and 
+            follow them!</Text>
         </View>
+
+            }
+        </View> 
     )
 }
 

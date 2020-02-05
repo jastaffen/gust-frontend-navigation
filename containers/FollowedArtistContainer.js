@@ -4,6 +4,7 @@ import { Dimensions, SafeAreaView, ScrollView, Text, Button, View, Image } from 
 import { connect } from 'react-redux';
 //Components
 import Header from '../components/Header'
+import Loader from '../components/Loader';
 import ArtistCard from '../components/artists/ArtistCard';
 
 
@@ -31,7 +32,7 @@ const FollowedArtistContainer = ({navigation, follows, selectedArtist, deselectA
 
                 <ScrollView style={{position: 'absolute', top: 0, bottom: 0, right: 0, left: 0}} contentContainerStyle={{justifyContent: 'center', alignContent: 'center', alignItems: 'center', paddingBottom: 90}}>
 
-                    {sortedFollows ?  sortedFollows.map(artist => 
+                    {sortedFollows && sortedFollows.length > 0 ?  sortedFollows.map(artist => 
 
                     <ArtistCard key={artist.id} artist={artist} 
                     navigation={navigation} followedArtist={true} />) : 
