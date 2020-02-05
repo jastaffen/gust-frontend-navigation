@@ -14,14 +14,15 @@ const HomePage = ({navigation, fetchFollows, userToken}) => {
     const [isMounted, setMounted] = useState(false)
 
 
-    // useEffect(() => {
-    //   getSpotifyToken()
-    //   .then(token => setSpotifyToken(token.access_token))
-    // }, [])
-
     useEffect(() => {
       followedArtists(userToken)
-      .then(obj => fetchFollows(obj))
+      .then(obj => {
+        if (obj.error) {
+          console.log(error)
+        } else {
+          fetchFollows(obj)
+        }
+      })
       setMounted(true);
     }, [])
 
