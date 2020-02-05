@@ -33,7 +33,7 @@ const Shows = ({upcomingShows}) => {
 
     <>      
 
-        <SafeAreaView style={{flex: 5, justifyContent: 'center', alignSelf: 'center', top: 20, height: 555}}>
+        <SafeAreaView style={{flex: 5, justifyContent: 'center', alignSelf: 'center', top: 90, height: 555}}>
             
             <FlatList horizontal={false} showsVerticalScrollIndicator={false} data={upcomingShows} style={{flexDirection: 'column'}} numColumns={2} contentContainerStyle={{paddingBottom: 20}} renderItem={({item}) => (
 

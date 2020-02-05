@@ -1,11 +1,12 @@
 //React
 import React, {useState, useEffect} from 'react';
-import { View, TextInput, Text, TouchableHighlight, Alert, SafeAreaView, FlatList, Image } from 'react-native';
+import { View, TextInput, Text, TouchableHighlight, Alert, SafeAreaView, FlatList, Image, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 //Components
 import Header from '../components/Header';
-import Shows from '../components/Shows';
 import Loader from '../components/Loader';
+import Shows from '../components/Shows';
+import SearchForShow from '../components/SearchForShow';
 //imports
 import { styles } from '../stylesheet';
 import { getArtistSongKickId } from '../requests';
@@ -13,11 +14,10 @@ import sk from '../images/sk-badge-black.png'
 
 const UpcomingShows = ({navigation, follows}) => {
 
-
-
     const [upcomingShows, setUpcomingShows] = useState(null);
     const [activeButton, setActiveButton] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
     
 
     useEffect(() => {
@@ -48,12 +48,28 @@ const UpcomingShows = ({navigation, follows}) => {
         })
     }
 
+    const handleSearchTermChange = (text) => {
+        setSearchTerm(text);
+    }
+
+    const renderUpcomingShows = () => {
+
+        let showsToDisplay = [...upcomingShows];
+
+        if (searchTerm) {
+            showsToDisplay = showsToDisplay.filter(show => show.location.city.toLowerCase().includes(searchTerm.toLowerCase()));
+        }
+
+        return <Shows upcomingShows={showsToDisplay} />
+
+    }
+
     return(
 
-        <View style={{flex: 1}}>
-        
+        <View style={{flex: 1}} onPress={Keyboard.dismiss}>
+            
             <Header navigation={navigation} />
-
+        
 
             <View style={styles.upcomingShowsContainer}>
 
@@ -68,18 +84,27 @@ const UpcomingShows = ({navigation, follows}) => {
 
             </View> 
             
+            
 
             { isLoading ? <Loader /> :
 
-            <View style={{flex: 1, top: -70}}>
+            <View style={{flex: 1, top: -60, zIndex: 10000000,}}>
             
-                { upcomingShows ? <Shows upcomingShows={upcomingShows} /> : null}
-
+                { upcomingShows ? 
+                <> 
+                    {renderUpcomingShows()} 
+                    <View style={{flex: 1, position: 'absolute', top: 270, borderWidth: 1, justifyContent: 'center', alignContent: 'center', alignSelf: 'center'}}>
+                        <SearchForShow searchTerm={searchTerm} handleSearchTermChange={handleSearchTermChange} />
+                    </View>
+                </> 
+                : null}
+                
             </View>  }
 
             <View style={{alignItems: 'center', bottom: 10}}>
                 <Image source={sk} style={{width: 20, height: 20}} />
             </View>
+            
         </View>
     )
 }
