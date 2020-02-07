@@ -14,6 +14,14 @@ const userAuthReducer = (state = initialState, action) => {
             }
         
         case "ADD_USER":
+        
+            // if (action.jwt) {
+            //     AsyncStorage.setItem('sessionId', action.user.sessionId);
+            // }
+
+            // if (action.user.id) {
+            //     AsyncStorage.setItem('userId', action.user.id);
+            // }
             return {
                 ...state,
                 user: action.user,

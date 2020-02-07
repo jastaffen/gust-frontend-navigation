@@ -1,18 +1,17 @@
 //React
 import React, { useState, useEffect } from 'react';
-import { View, TouchableWithoutFeedback, Keyboard } from 'react-native'
+import { View, TouchableWithoutFeedback, AsyncStorage, Keyboard } from 'react-native'
 import { connect } from 'react-redux';
 //Components
 import Header from '../components/Header';
 import SearchArtist from '../components/artists/SearchArtist';
 //imports
-import { getSpotifyToken, followedArtists } from '../requests';
+import { followedArtists, getUserInfo } from '../requests';
 
-//setSpotifyToken
 const HomePage = ({navigation, fetchFollows, userToken}) => {
 
     const [isMounted, setMounted] = useState(false)
-
+    
 
     useEffect(() => {
       followedArtists(userToken)
@@ -21,13 +20,28 @@ const HomePage = ({navigation, fetchFollows, userToken}) => {
           console.log(error)
         } else {
           fetchFollows(obj)
+          // _retrieveData();
         }
       })
       setMounted(true);
     }, [])
 
-    return(
 
+    // _retrieveData = async () => {
+    //   const userToken = await AsyncStorage.getItem('token');
+    //   const userId = await AsyncStorage.getItem('userId');
+    //   console.log(userId);
+    //   getUserInfo(userToken, userId)
+    //   .then(obj => {
+    //       // console.log(obj)
+    //       addingUser(obj.user, obj.jwt);
+    //       navigation.navigate(userToken ? 'app' : 'auth')  
+    //   })
+      
+    // }
+
+    return(
+      
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
 
         <View style={{flex: 1}}>
@@ -55,7 +69,6 @@ const msp = state => {
 const mdp = dispatch => {
   return {
     isLoading: () => dispatch({type: 'LOADING'}),
-    setSpotifyToken: (token) => dispatch({type: 'GET_TOKEN', token}),
     fetchFollows: (follows) => dispatch({type: 'ADD_FOLLOWS', follows})
   }
 }
