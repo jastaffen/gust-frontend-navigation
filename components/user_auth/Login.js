@@ -23,19 +23,28 @@ const Login = ({navigation, loading, loadingScreen, addingUser}) => {
                 if (obj.error) {
                     Alert.alert(obj.error)
                 } else {
+
                     addingUser(obj.user, obj.jwt);
-                    navigation.navigate('authLoading');
+                    // _storeData(obj.jwt, obj.user.id);
+                    navigation.navigate('authLoading'); 
                 }
+                
             })
+            
         } else {
             Alert.alert('Something is blank...')
         }     
     }
 
+    // const _storeData = async (token, userId) => {
+    //     await AsyncStorage.setItem('token', token);
+    //     await AsyncStorage.setItem('userId', JSON.stringify(userId)); 
+    // }
+
     return(
 
     <View style={{flex: 1}}>    
-
+        {/* { AsyncStorage.removeItem('token')} */}
         <AuthHeader />
 
         <>

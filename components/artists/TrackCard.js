@@ -73,15 +73,30 @@ const TrackCard = ({track, selectedArtist, userData, albumName, addVote, deleteU
     return(
         
         <View style={{flex: 1, alignSelf: 'stretch', backgroundColor: 'black', borderWidth: 1, borderColor: 'white', borderRadius: 10, padding: 30, width: width}} key={track.id}>
-            <View style={{flexDirection: 'row'}}>
 
-                <TouchableHighlight onPress={handleVotePress}><Image source={isClicked ? UpVoted : UpVote} style={{width: 40, height: 20}} /></TouchableHighlight>
-                <Text style={{color: 'white', textAlign: 'center', fontSize: 12}}>{track.name}</Text>
+            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <View style={{flexDirection: 'row'}}>
+
+                    <TouchableHighlight onPress={handleVotePress}><Image source={isClicked ? UpVoted : UpVote} style={{width: 40, height: 20}} /></TouchableHighlight>
+                    <Text style={{color: 'white', textAlign: 'center', fontSize: 12}}>{track.name}</Text>
+
+                </View>
+                { track.votes.length > 0 || isClicked ? 
+                <View>
+        
+                    <TouchableHighlight style={{position: 'absolute', left: -80, backgroundColor: '#2FA8F8', padding: 10, borderWidth: 2, borderColor: 'white', borderRadius: 10}}>
+                        <Text style={{color: 'white', fontSize: 12}}>See Graph</Text>
+                    </TouchableHighlight>  
+                
+                </View>
+                : null   } 
 
             </View>
 
             <Text style={{color: 'white', textAlign: 'center', padding: 5}}>{voteCount}</Text>
-                        
+
+             
+
         </View>
     )
 }

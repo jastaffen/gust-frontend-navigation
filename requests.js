@@ -47,6 +47,17 @@ export const login = (user) => fetch(loginUrl, {
     .then(parseData)
     .catch(catchError)
 
+
+export const getUserInfo = (userToken, id) => fetch(`${usersUrl}/${id}`, {
+    method: 'GET',
+    headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        'Authorization': `Bearer ${userToken}`
+    }})
+    .then(parseData)
+    .catch(catchError)
+
 /****************************SPOTIFY******************************/
 const clientId = REACT_APP_CLIENT_I
 const clientSecret = REACT_APP_CLIENT_S
