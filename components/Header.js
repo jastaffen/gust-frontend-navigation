@@ -11,7 +11,7 @@ import GoBack from '../images/gobackthin.png';
 import { styles } from '../stylesheet';
 
 
-const Header = ({navigation, firstName, isHome}) => {
+const Header = ({navigation, firstName, isHome, charts}) => {
     
     return (
 
@@ -27,7 +27,7 @@ const Header = ({navigation, firstName, isHome}) => {
             </TouchableOpacity>
             }
 
-            <Text style={styles.mainText}>GUST</Text>
+            <Text style={styles.mainText}>{charts ? charts : 'GUST' }</Text>
             <Text style={styles.welcome}>Hi {firstName}</Text>
             
         </View>

@@ -172,6 +172,21 @@ export const allVotes = () => fetch(backendURL + '/api/v1/votes/all', {
     .then(parseData)
     .catch(catchError)
 
+export const votesByUserLocation = (songName, artistName) => fetch(backendURL + '/api/v1/votes/by_location', {
+    method: "POST",
+    headers: {
+        'Content-Type': "application/json",
+        Accept: "application/json",
+    }, 
+    body: JSON.stringify({
+        votes: {
+            song_name: songName,
+            artist_name: artistName
+        }})
+    })
+    .then(parseData)
+    .catch(catchError)
+
 /****************************FOLLOWS*******************************/
 
 export const followArtist = (artistId, largeArtistImage, mediumArtistImage, smallArtistImage, artistName, userId, userToken) => fetch(backendURL + `/api/v1/follows`, {

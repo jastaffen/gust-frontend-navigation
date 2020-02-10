@@ -11,7 +11,7 @@ import { vote, deleteVote } from '../../requests';
 const width = Dimensions.get('window').width;
 
 
-const TrackCard = ({track, selectedArtist, userData, albumName, addVote, deleteUserVote}) => {
+const TrackCard = ({navigation, track, selectedArtist, userData, albumName, addVote, deleteUserVote}) => {
 
     const [isClicked, setIsClicked] = useState(false);
     const [voteCount, setVoteCount] = useState(track.votes.length)
@@ -84,7 +84,10 @@ const TrackCard = ({track, selectedArtist, userData, albumName, addVote, deleteU
                 { track.votes.length > 0 || isClicked ? 
                 <View>
         
-                    <TouchableHighlight style={{position: 'absolute', left: -80, backgroundColor: '#2FA8F8', padding: 10, borderWidth: 2, borderColor: 'white', borderRadius: 10}}>
+                    <TouchableHighlight style={{position: 'absolute', left: -80, 
+                    backgroundColor: '#2FA8F8', padding: 10, 
+                    borderWidth: 2, borderColor: 'white', borderRadius: 10}}
+                    onPress={() => navigation.navigate('Graph', {songName: track.name, artistName: (selectedArtist.artistName || selectedArtist.name) } )} >
                         <Text style={{color: 'white', fontSize: 12}}>See Graph</Text>
                     </TouchableHighlight>  
                 

@@ -56,7 +56,7 @@ const TracksContainer = ({navigation, tracks, selectedArtist, userToken, addVote
 
                     <ScrollView contentContainerStyle={{paddingBottom: 40}}>
 
-                        {isMounted ? tracks.map(track => <TrackCard track={track} key={track.id} albumName={navigation.getParam('name')} />)
+                        {isMounted ? tracks.map(track => <TrackCard navigation={navigation} track={track} key={track.id} albumName={navigation.getParam('name')} />)
  : null}
                     </ScrollView>
 

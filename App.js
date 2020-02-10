@@ -20,6 +20,7 @@ import SignUp from './components/user_auth/SignUp';
 import UpcomingShows from './containers/UpcomingShows';
 import AuthLoading from './components/user_auth/AuthLoading';
 import Charts from './containers/Charts';
+import GraphCard from './components/artists/GraphCard';
 //Imports
 import HomeScreenImage from './images/homescreen.png'
 import FollowedArtistsImage from './images/favoriteartists.png';
@@ -52,6 +53,10 @@ const HomeStack = createStackNavigator({
   },
   Tracks: {
     screen: TracksContainer,
+    navigationOptions: navigationOptionHandler
+  },
+  Graph: {
+    screen: GraphCard,
     navigationOptions: navigationOptionHandler
   }
   },
