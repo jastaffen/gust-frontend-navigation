@@ -42,17 +42,11 @@ const SearchArtists = ({navigation, spotifyToken, selectedArtist, getArtists}) =
                 <Image style={styles.imageStyle} source={SearchIcon} />
                 
                 <TextInput style={styles.searchInput} autoCapitalize='words' 
-                placeholder="search for an artist:" value={searchText} 
+                placeholder="Search artists" placeholderTextColor='#3B5F78' value={searchText} 
                 onChangeText={(text) => setSearchText(text)}
                 onSubmitEditing={handleSearchSubmit} />
                 
             </View>
-
-            <TouchableHighlight onPress={handleSearchSubmit}>
-
-                    <Text style={styles.searchButton}>Search</Text>
-
-            </TouchableHighlight>
 
         </View>
 

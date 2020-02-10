@@ -1,12 +1,12 @@
 //React
 import React, { useState, useEffect } from 'react';
-import { View, TouchableWithoutFeedback, AsyncStorage, Keyboard } from 'react-native'
+import { View, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import { connect } from 'react-redux';
 //Components
 import Header from '../components/Header';
 import SearchArtist from '../components/artists/SearchArtist';
 //imports
-import { followedArtists, getUserInfo } from '../requests';
+import { followedArtists, getUserInfo, votesByUserLocation } from '../requests';
 
 const HomePage = ({navigation, fetchFollows, userToken}) => {
 
@@ -20,25 +20,10 @@ const HomePage = ({navigation, fetchFollows, userToken}) => {
           console.log(error)
         } else {
           fetchFollows(obj)
-          // _retrieveData();
         }
       })
       setMounted(true);
     }, [])
-
-
-    // _retrieveData = async () => {
-    //   const userToken = await AsyncStorage.getItem('token');
-    //   const userId = await AsyncStorage.getItem('userId');
-    //   console.log(userId);
-    //   getUserInfo(userToken, userId)
-    //   .then(obj => {
-    //       // console.log(obj)
-    //       addingUser(obj.user, obj.jwt);
-    //       navigation.navigate(userToken ? 'app' : 'auth')  
-    //   })
-      
-    // }
 
     return(
       

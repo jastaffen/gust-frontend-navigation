@@ -1,6 +1,6 @@
 //React
 import React from 'react';
-import { View, Alert, AsyncStorage } from 'react-native';
+import { View, Alert } from 'react-native';
 import { connect } from 'react-redux';
 //Components
 import AuthHeader from './AuthHeader';
@@ -25,7 +25,6 @@ const Login = ({navigation, loading, loadingScreen, addingUser}) => {
                 } else {
 
                     addingUser(obj.user, obj.jwt);
-                    // _storeData(obj.jwt, obj.user.id);
                     navigation.navigate('authLoading'); 
                 }
                 
@@ -36,15 +35,10 @@ const Login = ({navigation, loading, loadingScreen, addingUser}) => {
         }     
     }
 
-    // const _storeData = async (token, userId) => {
-    //     await AsyncStorage.setItem('token', token);
-    //     await AsyncStorage.setItem('userId', JSON.stringify(userId)); 
-    // }
-
     return(
 
     <View style={{flex: 1}}>    
-        {/* { AsyncStorage.removeItem('token')} */}
+       
         <AuthHeader />
 
         <>
