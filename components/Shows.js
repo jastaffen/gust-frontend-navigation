@@ -34,16 +34,15 @@ const Shows = ({upcomingShows}) => {
 
     <>      
 
-        <SafeAreaView style={{flex: 5, justifyContent: 'center', alignSelf: 'center', top: 90, height: 555}}>
+        <SafeAreaView style={{flex: 5, justifyContent: 'center', alignSelf: 'center', top: 125, height: 555, left: -10}}>
             
-            <FlatList horizontal={false} showsVerticalScrollIndicator={false} data={upcomingShows} style={{flexDirection: 'column'}} numColumns={2} contentContainerStyle={{paddingBottom: 20}} renderItem={({item}) => (
+            <FlatList horizontal={false} showsVerticalScrollIndicator={false} data={upcomingShows} contentContainerStyle={{paddingBottom: 20}} renderItem={({item}) => (
 
-                <TouchableOpacity style={{borderWidth: 2, borderColor: '#2FA8F8', borderRadius: 10, margin: 5, width: 150, justifyContent: 'center', alignItems: 'center', padding: 20}}
+                <TouchableOpacity style={{flex: 1, marginBottom: 10}}
                 onLongPress={() => Linking.openURL(item.uri)}>
-                    <Text>{handleDates(item.start.date)}</Text>
-                    <Image source={UpcomingShowsLogo} style={{width: 60, height: 60}} />
-                    <Text style={{fontSize: 10}}>{item.venue.displayName === 'Unknown venue' ? item.displayName : item.venue.displayName }</Text>
-                    <Text style={{fontSize: 9, marginTop: 5, fontWeight: 'bold'}}>{item.location.city}</Text>
+                    <Text style={{color: '#2585C4', fontSize: 12, fontWeight: 'bold'}}>{handleDates(item.start.date)}</Text>
+                    <Text style={{color: '#2FA8F8', fontSize: 12}}>{item.venue.displayName === 'Unknown venue' ? item.displayName : item.venue.displayName }</Text>
+                    <Text style={{color: '#2FA8F8', fontSize: 11}}>{item.location.city}</Text>
                 </TouchableOpacity>
 
                 )} />

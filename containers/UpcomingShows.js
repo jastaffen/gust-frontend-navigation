@@ -1,12 +1,13 @@
 //React
 import React, {useState, useEffect} from 'react';
-import { View, Text, TouchableHighlight, Alert, SafeAreaView, FlatList, Image, Keyboard } from 'react-native';
+import { View, Text, TouchableHighlight, Alert, SafeAreaView, FlatList, Image, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 //Components
 import Header from '../components/Header';
 import Loader from '../components/Loader';
 import Shows from '../components/Shows';
 import SearchForShow from '../components/SearchForShow';
+import ShowArtistProfile from '../components/ShowArtistProfile';
 //imports
 import { styles } from '../stylesheet';
 import { getArtistSongKickId } from '../requests';
@@ -18,6 +19,7 @@ const UpcomingShows = ({navigation, follows}) => {
     const [activeButton, setActiveButton] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
+    const [selectedArtist, setSelectedArtist] = useState(null);
     
 
     useEffect(() => {
@@ -32,10 +34,10 @@ const UpcomingShows = ({navigation, follows}) => {
         setUpcomingShows(null)
     }, [follows])
 
-    const handleUpcomingShowButtonPress = (name, id) => {
+    const handleUpcomingShowButtonPress = (artist, id) => {
         setActiveButton(id);
         setIsLoading(true)
-        getArtistSongKickId(name)
+        getArtistSongKickId(artist.artistName)
         .then(obj => {
             if (obj.onTourUntil === null) {
                 setIsLoading(false)
@@ -44,10 +46,10 @@ const UpcomingShows = ({navigation, follows}) => {
             } else {
                 setIsLoading(false)
                 setUpcomingShows(obj.resultsPage.results.event);
+                setSelectedArtist(artist);
             }
         })
     }
-
 
     const handleSearchTermChange = (text) => {
         setSearchTerm(text);
@@ -67,21 +69,26 @@ const UpcomingShows = ({navigation, follows}) => {
 
     return(
 
-        <View style={{flex: 1}} onPress={Keyboard.dismiss}>
+    <TouchableWithoutFeedback style={{flex: 1}} onPress={Keyboard.dismiss}>
+        <>
             
             <Header navigation={navigation} title={'Upcoming Shows'} />
-        
+
+            <Text style={{top: 35, left: 5, color: '#2FA8F8', fontSize: 15}}>Artists you follow</Text>
         {
             follows.length > 0 ? 
         <>
             <View style={styles.upcomingShowsContainer}>
 
-
-                <SafeAreaView style={{flex: 1, justifyContent: 'center', alignContent: 'center', alignItems: 'center', top: 60, height: 200, borderBottomWidth: 1, borderBottomColor: 'black'}}>
-                    <FlatList showsVerticalScrollIndicator={false} horizontal={false} style={{flexDirection: 'column'}} numColumns={2} data={follows}  renderItem={({item}) => (
-                        <TouchableHighlight  key={item.id} id={item.id} activeOpacity={0.3} style={activeButton === item.id ? styles.upcomingShowsButtonActive : styles.upcomingShowsButtonInactive} underlayColor={'#2FA8F8'}  onPress={() => handleUpcomingShowButtonPress(item.artistName, item.id)}>
-                        <Text style={activeButton === item.id ? {fontSize: 14, color: '#7AC6F9'} : {fontSize: 14, color: '#2FA8F8'}}>{item.artistName}</Text>
-                    </TouchableHighlight>
+                
+                <SafeAreaView style={{flex: 1, top: 60, height: 200, borderBottomWidth: 1, borderBottomColor: 'blue'}}>
+                    <FlatList showsVerticalScrollIndicator={false} horizontal={false} data={follows} contentContainerStyle={{paddingBottom: 15}}  renderItem={({item}) => (
+                        <TouchableHighlight  key={item.id} id={item.id} activeOpacity={0.3} style={activeButton === item.id ? styles.upcomingShowsButtonActive : styles.upcomingShowsButtonInactive} underlayColor={'#2FA8F8'}  onPress={() => handleUpcomingShowButtonPress(item, item.id)}>
+                            <View style={{flexDirection: 'row'}}>
+                                <Image source={{uri: item.smallImage}} style={{width: 60, height: 60}} />
+                                <Text style={activeButton === item.id ? {top: 10, left: 5, fontSize: 18, color: 'white'} : {top: 10, left: 5, fontSize: 18, color: '#2FA8F8'}}>{item.artistName}</Text>
+                            </View>
+                        </TouchableHighlight>
                     )} />
                 </SafeAreaView>
 
@@ -93,19 +100,26 @@ const UpcomingShows = ({navigation, follows}) => {
 
             <View style={{flex: 1, top: -60, zIndex: 10000000,}}>
             
-                { upcomingShows ? 
+                { upcomingShows && selectedArtist ? 
                 <> 
-                    {renderUpcomingShows()} 
-                    <View style={{flex: 1, position: 'absolute', top: 270, borderWidth: 1, justifyContent: 'center', alignContent: 'center', alignSelf: 'center'}}>
-                        <SearchForShow searchTerm={searchTerm} handleSearchTermChange={handleSearchTermChange} />
+                    <View style={{flexDirection: 'row'}}>
+                        <ShowArtistProfile selectedArtist={selectedArtist} />
+                        <View style={{left: -200}}>
+                            <View style={{flex: 1, position: 'absolute', top: 270, borderWidth: 1}}>
+                                <SearchForShow searchTerm={searchTerm} handleSearchTermChange={handleSearchTermChange} />
+                            </View>
+                            {renderUpcomingShows()} 
+                        </View>
                     </View>
+                    
+                    
                 </> 
                 : null}
                 
             </View>  }
 
-            <View style={{alignItems: 'center', bottom: 10}}>
-                <Image source={sk} style={{width: 20, height: 20}} />
+            <View style={{bottom: 6}}>
+                <Image source={sk} style={{width: 15, height: 15, opacity: 0.6}} />
             </View>
         </>
 
@@ -118,7 +132,8 @@ const UpcomingShows = ({navigation, follows}) => {
         </View>
 
             }
-        </View> 
+        </>
+    </TouchableWithoutFeedback> 
     )
 }
 
