@@ -55,18 +55,6 @@ const ArtistPage = ({navigation, spotifyToken, selectedArtist, country, loadingS
         }
     }, [selectedArtist]);
 
-    // useEffect(() => {
-    //     loadingScreen();
-    //     alreadyFollowed();
-    //     if (navigation.getParam('followedArtist')) {
-    //         fetchArtistAlbums(spotifyToken, selectedArtist.apiArtistId, country)
-    //         .then(obj => getAlbums(obj.items))
-    //     } else {
-    //         fetchArtistAlbums(spotifyToken, selectedArtist.id, country)
-    //         .then(obj => getAlbums(obj.items))
-    //     }
-    // }, [selectedArtist]);
-
     return(
 
         <View style={{flex: 1}}>

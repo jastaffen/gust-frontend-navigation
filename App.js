@@ -96,7 +96,7 @@ const MainTabs = createBottomTabNavigator({
         tabBarOnPress: ({navigation, defaultHandler}) => {
           navigation.navigate('Home');
           defaultHandler();
-        }
+        },
       }
     }
   },
@@ -106,8 +106,9 @@ const MainTabs = createBottomTabNavigator({
       return {
         tabBarIcon: () => <Image source={FollowedArtistsImage} style={{width: 20, height: 20}} />,
         tabBarOnPress: ({navigation, defaultHandler}) => {
+          navigation.navigate('FollowedArtists');
           defaultHandler();
-        }
+        },
       }
     }
   },
