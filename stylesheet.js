@@ -148,31 +148,22 @@ export const styles = StyleSheet.create({
     upcomingShowsContainer: {
         flex: 1, 
         flexDirection: 'row', 
-        top: 30, 
+        top: 50,
+        left: 10, 
         flexWrap: 'wrap', 
         alignItems: 'flex-start',
         justifyContent: 'center',
         zIndex: 10
     },
     upcomingShowsButtonInactive: {
-        margin: 4, 
-        padding: 15, 
-        borderWidth: 2, 
-        borderColor: '#1F60E0', 
-        borderRadius: 10,
+        borderTopWidth: 1, 
+        borderColor: '#2FA8F8', 
         backgroundColor: '#fff',
-        maxWidth: 125,
-        minWidth: 125
     },
     upcomingShowsButtonActive: {
-        margin: 4, 
-        padding: 15, 
-        borderWidth: 2, 
-        borderColor: '#1F60E0', 
-        borderRadius: 10,
+        borderTopWidth: 1, 
+        borderColor: '#2FA8F8',
         backgroundColor: '#2FA8F8',
-        maxWidth: 125,
-        minWidth: 125
     },
     trackCard: {
         flex: 1, 
