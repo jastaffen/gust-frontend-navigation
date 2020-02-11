@@ -14,8 +14,8 @@ const SignUpForm = ({user, handleNextPress, handleUserChange, LogoPicture}) => {
                 <TextInput autoCapitalize='none' secureTextEntry={true} style={styles.name} placeholder='password' value={user.password} onChangeText={(text, string='password') => handleUserChange(text, string)} />
             </View>
 
-            <View style={{flexDirection: 'column', top: -300, zIndex: 2}}>
-                <Button title="next" onPress={handleNextPress} />
+            <View style={{flexDirection: 'column', top: -280, zIndex: 2}}>
+                <Button color={'#106AA1'} title="Create Account" onPress={handleNextPress} />
             </View>
 
             <View style={{position: 'absolute', top: -100,  alignSelf: 'center'}}>
