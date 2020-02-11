@@ -1,6 +1,8 @@
 //React 
 import React from 'react';
-import { View, TextInput, Button, Image, StyleSheet } from 'react-native'
+import { View, TextInput, Button, Image } from 'react-native';
+//imports
+import { styles } from '../../stylesheet';
 
 const SignUpForm = ({user, handleNextPress, handleUserChange, LogoPicture}) => {
     return(
@@ -26,16 +28,3 @@ const SignUpForm = ({user, handleNextPress, handleUserChange, LogoPicture}) => {
 }
 
 export default SignUpForm;
-
-const styles = StyleSheet.create({
-    name: {
-        backgroundColor: '#D8EEFC',
-        color: '#6769F8',
-        margin: 5,
-        width: 150,
-        height: 35,
-        paddingHorizontal: 12,
-        textAlign: 'center',
-        fontSize: 16
-      }
-})

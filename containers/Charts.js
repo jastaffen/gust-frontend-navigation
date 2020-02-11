@@ -46,10 +46,10 @@ const Charts = ({navigation, tracks}) => {
     return (
 
         <View style={{flex: 1}}>
-            <Header navigation={navigation} />
+
+            <Header navigation={navigation} title={'Top Charts'} />
 
             <SafeAreaView style={{flex: 1, justifyContent: 'center', alignItems: 'center', top: 40}}>
-                <Text style={{fontSize: 18, marginBottom: 10, color: '#2FA8F8'}}>THE CHARTS</Text>
                 {topVotes ? 
                 <FlatList data={topVotes} showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom: 40}} keyExtractor={item => item.vote.songName} renderItem={({item}) => (
 

@@ -59,7 +59,7 @@ const ArtistPage = ({navigation, spotifyToken, selectedArtist, country, loadingS
 
         <View style={{flex: 1}}>
 
-            <Header navigation={navigation} />
+            <Header navigation={navigation} title={"Artist Page"} />
 
             <SafeAreaView style={{top: 20}}>
 

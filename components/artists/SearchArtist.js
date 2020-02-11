@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import { View, TextInput, Image, TouchableHighlight, Text, Alert, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 //Imports
-import SearchIcon from '../../images/search.png';
+import SearchIcon from '../../images/searchicon.png';
 import { styles } from '../../stylesheet';
 import { fetchArtists } from '../../requests';
 
@@ -42,7 +42,7 @@ const SearchArtists = ({navigation, spotifyToken, selectedArtist, getArtists}) =
                 <Image style={styles.imageStyle} source={SearchIcon} />
                 
                 <TextInput style={styles.searchInput} autoCapitalize='words' 
-                placeholder="Search artists" placeholderTextColor='#3B5F78' value={searchText} 
+                placeholder="Search artists" placeholderTextColor='#7AC6F9' value={searchText} 
                 onChangeText={(text) => setSearchText(text)}
                 onSubmitEditing={handleSearchSubmit} />
                 

@@ -46,7 +46,7 @@ const TracksContainer = ({navigation, tracks, selectedArtist, userToken, addVote
 
         <View style={{flex: 1}}>
 
-            <Header navigation={navigation} />
+            <Header navigation={navigation} title={"Track Page"} />
 
             <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', top: 40}}>
 

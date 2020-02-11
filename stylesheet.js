@@ -46,6 +46,16 @@ export const styles = StyleSheet.create({
         margin: 10,
         width: 260,
     },
+    name: {
+        backgroundColor: '#D8EEFC',
+        color: '#6769F8',
+        margin: 5,
+        width: 150,
+        height: 35,
+        paddingHorizontal: 12,
+        textAlign: 'center',
+        fontSize: 16
+    },
     searchInput: {
         flex: 1,
         paddingHorizontal: 10,
@@ -173,7 +183,6 @@ export const styles = StyleSheet.create({
         borderRadius: 10, 
         padding: 30, 
         width: width
-    }
-    
+    } 
 });
 
