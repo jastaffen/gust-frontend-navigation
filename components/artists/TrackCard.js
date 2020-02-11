@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 //imports
 import UpVoted from '../../images/upvoted.png';
 import UpVote from '../../images/upvote.png';
+import SeeGraph from '../../images/charts.png';
 import { vote, deleteVote } from '../../requests'; 
 
 
@@ -82,13 +83,14 @@ const TrackCard = ({navigation, track, selectedArtist, userData, albumName, addV
 
                 </View>
                 { track.votes.length > 0 || isClicked ? 
+
                 <View>
         
-                    <TouchableHighlight style={{position: 'absolute', left: -80, 
-                    backgroundColor: '#2FA8F8', padding: 10, 
+                    <TouchableHighlight style={{position: 'absolute', left: -50, 
+                    padding: 10, 
                     borderWidth: 2, borderColor: 'white', borderRadius: 10}}
                     onPress={() => navigation.navigate('Graph', {songName: track.name, artistName: (selectedArtist.artistName || selectedArtist.name) } )} >
-                        <Text style={{color: 'white', fontSize: 12}}>See Graph</Text>
+                        <Image source={SeeGraph} style={{width: 40, height: 30}} />
                     </TouchableHighlight>  
                 
                 </View>
