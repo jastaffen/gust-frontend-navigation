@@ -31,7 +31,7 @@ const FollowedArtistContainer = ({navigation, follows, selectedArtist, deselectA
 
         <View style={{flex: 1}}>
 
-            <Header navigation={navigation} isHome={true} />
+            <Header navigation={navigation} isHome={true} title={'Followed Artists'} />
 
             <SafeAreaView style={{flex: 1, position: 'relative', top: 50}}>
 
@@ -40,12 +40,14 @@ const FollowedArtistContainer = ({navigation, follows, selectedArtist, deselectA
                     {sortedFollows && sortedFollows.length > 0 ?  sortedFollows.map(artist => 
 
                     <ArtistCard key={artist.id} artist={artist} 
-                    navigation={navigation} followedArtist={true} />) : 
+                    navigation={navigation} followedArtist={true} fromFollowedTab={true} />) : 
 
                     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', margin: '25%', width: 300}}>
+
                         <Text style={{textAlign: 'center', color: 'blue', fontSize: 18}}>
                         You haven't followed any artists yet. Search for artists and 
                         follow them!</Text>
+
                     </View>}
 
                 </ScrollView>

@@ -55,11 +55,12 @@ const ArtistPage = ({navigation, spotifyToken, selectedArtist, country, loadingS
         }
     }, [selectedArtist]);
 
+
     return(
 
         <View style={{flex: 1}}>
 
-            <Header navigation={navigation} title={"Artist Page"} />
+            <Header navigation={navigation} title={"Artist Page"} fromFollowedTab={navigation.getParam('fromFollowedTab')} />
 
             <SafeAreaView style={{top: 20}}>
 

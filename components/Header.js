@@ -11,7 +11,7 @@ import GoBack from '../images/gobackthin.png';
 import { styles } from '../stylesheet';
 
 
-const Header = ({navigation, firstName, isHome, title}) => {
+const Header = ({navigation, firstName, isHome, title, fromFollowedTab}) => {
     
     return (
 
@@ -22,7 +22,7 @@ const Header = ({navigation, firstName, isHome, title}) => {
                 <Image source={LogoPicture} style={{resizeMode: 'contain', width: 50, height: 50, left: 5}}/>
             </TouchableOpacity> 
             : 
-            <TouchableOpacity onPress={() => navigation.goBack()}>
+            <TouchableOpacity onPress={fromFollowedTab ? () => navigation.navigate('FollowedArtists') : () => navigation.goBack()}>
                 <Image source={GoBack}  style={{resizeMode: 'contain', width: 40, height: 40, left: 5}} />
             </TouchableOpacity>
             }
