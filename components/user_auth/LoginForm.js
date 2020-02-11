@@ -30,6 +30,7 @@ const LoginForm = ({navigation, handleLoginSubmit, styles, LogoPicture}) => {
             <View style={{top: -20, alignSelf: 'center'}}>
                 <Image source={LogoPicture} style={{resizeMode: 'contain', width: 180, height: 180}} />
             </View>
+            
         </>
     )
 }
