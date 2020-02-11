@@ -48,6 +48,7 @@ const UpcomingShows = ({navigation, follows}) => {
         })
     }
 
+
     const handleSearchTermChange = (text) => {
         setSearchTerm(text);
     }

@@ -1,6 +1,6 @@
 //React
 import React, {useState} from 'react';
-import { View, TextInput, Alert, Image, Button, Text } from 'react-native';
+import { View, TextInput, TouchableWithoutFeedback, Image, Button, Text } from 'react-native';
 
 
 const LoginForm = ({navigation, handleLoginSubmit, styles, LogoPicture}) => {
@@ -20,7 +20,10 @@ const LoginForm = ({navigation, handleLoginSubmit, styles, LogoPicture}) => {
                 <TextInput style={styles.input} autoCapitalize='none' secureTextEntry={true} placeholder="password" onChangeText={(e) => setUser({...user, password: e})} onSubmitEditing={() => handleLoginSubmit(user)} />
             
                 <Button color={'#106AA1'} style={styles.button} title="Log In!" onPress={() => handleLoginSubmit(user)} />
-                <Button title="don't have an account?" onPress={() => navigation.navigate('SignUp')} />
+                
+                <TouchableWithoutFeedback onPress={() => navigation.navigate('SignUp')}>
+                    <Text style={{color: '#2FA8F8'}}>Don't have an account?</Text>
+                </TouchableWithoutFeedback>
             
             </View>
 

@@ -4,7 +4,6 @@ import { Dimensions, SafeAreaView, ScrollView, Text, Button, View, Image } from 
 import { connect } from 'react-redux';
 //Components
 import Header from '../components/Header'
-import Loader from '../components/Loader';
 import ArtistCard from '../components/artists/ArtistCard';
 
 
@@ -12,6 +11,12 @@ import ArtistCard from '../components/artists/ArtistCard';
 const FollowedArtistContainer = ({navigation, follows, selectedArtist, deselectArtist}) => {
 
     const [sortedFollows, setSortedFollows] = useState(null);
+
+    useEffect(() => {
+        let alphaSortedFollows = follows.sort((followA, followB) => followA.artistName.localeCompare(followB.artistName));
+        setSortedFollows(alphaSortedFollows);
+    }, [])
+
 
     useEffect(() => {
         let alphaSortedFollows = follows.sort((followA, followB) => followA.artistName.localeCompare(followB.artistName));
