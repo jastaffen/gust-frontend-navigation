@@ -1,6 +1,6 @@
 //React
 import React from 'react';
-import { View, Alert } from 'react-native';
+import { View, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 //Components
 import AuthHeader from './AuthHeader';
@@ -36,22 +36,25 @@ const Login = ({navigation, loading, loadingScreen, addingUser}) => {
     }
 
     return(
-
-    <View style={{flex: 1}}>    
+    
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    
+        <View style={{flex: 1}}>    
        
-        <AuthHeader />
+            <AuthHeader />
 
-        <>
-        {loading ? <AuthLoading /> :
-            <LoginForm navigation={navigation} 
-            handleLoginSubmit={handleLoginSubmit}
-            styles={styles} LogoPicture={LogoPicture}  />
-        }
-        </>
+            <>
+            {loading ? <AuthLoading /> :
+                <LoginForm navigation={navigation} 
+                handleLoginSubmit={handleLoginSubmit}
+                styles={styles} LogoPicture={LogoPicture}  />
+            }
+            </>
         
 
-    </View>
+        </View>
 
+    </TouchableWithoutFeedback>
     )
 }
 

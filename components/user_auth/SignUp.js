@@ -1,6 +1,6 @@
 //React
 import React, {useState} from 'react';
-import { View, Button, Alert, Image } from 'react-native';
+import { View, Button, Alert, Image, TouchableWithoutFeedback, Text, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 //Components
 import AuthHeader from './AuthHeader';
@@ -99,49 +99,53 @@ const SignUp = ({navigation, addUser}) => {
     
     return(
     
-    <View style={{flex: 1}}>
+    <TouchableWithoutFeedback  onPress={Keyboard.dismiss}>
+        <View style={{flex: 1}}>
 
-        <AuthHeader />
+            <AuthHeader />
 
-        <View style={{top: 15, justifyContent: 'center', alignItems: 'center'}}>
+            <View style={{top: 15, justifyContent: 'center', alignItems: 'center'}}>
 
-        { nextPress ? 
+            { nextPress ? 
 
-        <>
-            <View style={{position: 'absolute', top: -100, alignSelf: 'center'}}>
-                    <Image source={LogoPicture} style={{resizeMode: 'contain', width: 170, height: 170}} />
-            </View>
+            <>
+                <View style={{position: 'absolute', top: -100, alignSelf: 'center'}}>
+                        <Image source={LogoPicture} style={{resizeMode: 'contain', width: 170, height: 170}} />
+                </View>
 
-            {loading ? 
-                <View style={{flex: 1, top: -190, alignSelf: 'center', zIndex: 10000}}>
-                    <Loader />
-                </View> 
-            : null }
+                {loading ? 
+                    <View style={{flex: 1, top: -190, alignSelf: 'center', zIndex: 10000}}>
+                        <Loader />
+                    </View> 
+                : null }
 
-            {error ? <ManualLocationSelection city={city} country={country} state={state} handleManualCityChange={handleManualCityChange} handleManualCountrySelection={handleManualCountrySelection} handleManualStateSelection={handleManualStateSelection} /> : null}
+                {error ? <ManualLocationSelection city={city} country={country} state={state} handleManualCityChange={handleManualCityChange} handleManualCountrySelection={handleManualCountrySelection} handleManualStateSelection={handleManualStateSelection} /> : null}
 
-            <View style={{top: -20}}>
-                <Button title="SUBMIT!" buttonStyle={{borderRadius: 10, borderWidth: 1, borderColor: '#2FA8F8', padding: 5}} onPress={handleSubmit} onSubmitEditing={handleSubmit} />
-            </View>
+                <View style={{top: -20}}>
+                    <Button title="SUBMIT!" buttonStyle={{borderRadius: 10, borderWidth: 1, borderColor: '#2FA8F8', padding: 5}} onPress={handleSubmit} onSubmitEditing={handleSubmit} />
+                </View>
 
-        </>
+            </>
         
-        :  
+            :  
 
-        <>
+            <>
 
-            <SignUpForm user={user} handleNextPress={handleNextPress} 
-            handleUserChange={handleUserChange} LogoPicture={LogoPicture} />
+                <SignUpForm user={user} handleNextPress={handleNextPress} 
+                handleUserChange={handleUserChange} LogoPicture={LogoPicture} />
 
-            <View style={{top: -50}}>
-                <Button title="already have an account?" onPress={() => navigation.navigate('Login')} />
-            </View>
+                <View style={{top: -50, alignItems: 'center'}}>
+                    <TouchableWithoutFeedback  onPress={() => navigation.navigate('Login')}>
+                        <Text style={{color: '#2FA8F8'}}>Already have an account?</Text>
+                    </TouchableWithoutFeedback>
+                </View>
 
-        </>
-        }
+            </>
+            }
 
-        </View> 
-    </View>
+            </View> 
+        </View>
+    </TouchableWithoutFeedback>
     
     )
 };
