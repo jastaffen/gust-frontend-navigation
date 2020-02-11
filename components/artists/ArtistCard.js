@@ -7,12 +7,12 @@ import { styles } from '../../stylesheet';
 //Constants
 const width = Dimensions.get('window').width;
 
-const ArtistCard = ({navigation, artist, selectedArtist, followedArtist}) => {
+const ArtistCard = ({navigation, artist, selectedArtist, followedArtist, fromFollowedTab}) => {
 
     
     const handleArtistCardPress = () => {
         selectedArtist(artist);
-        navigation.navigate('Artist', {followedArtist});
+        fromFollowedTab ? navigation.navigate('Artist', {followedArtist, fromFollowedTab}) : navigation.navigate('Artist', {followedArtist})
     }
 
     return(
