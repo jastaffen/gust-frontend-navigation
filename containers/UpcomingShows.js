@@ -69,7 +69,7 @@ const UpcomingShows = ({navigation, follows}) => {
 
         <View style={{flex: 1}} onPress={Keyboard.dismiss}>
             
-            <Header navigation={navigation} />
+            <Header navigation={navigation} title={'Upcoming Shows'} />
         
         {
             follows.length > 0 ? 

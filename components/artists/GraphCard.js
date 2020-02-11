@@ -31,7 +31,8 @@ const GraphCard = ({navigation}) => {
 
     return(
     <View style={{flex: 1}}>
-        <Header navigation={navigation} charts={'Charts'} />
+
+        <Header navigation={navigation} title={'Charts'}/>
 
         <View style={{top: 40, alignItems: 'center'}}>
             <Text style={{fontSize: 20}}>{navigation.getParam('songName')}</Text>

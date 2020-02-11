@@ -31,7 +31,7 @@ const HomePage = ({navigation, fetchFollows, userToken}) => {
 
         <View style={{flex: 1}}>
 
-          <Header navigation={navigation} isHome={true} />
+          <Header navigation={navigation} isHome={true} title={"GUST"} />
 
           <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
 

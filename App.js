@@ -133,7 +133,13 @@ const MainTabs = createBottomTabNavigator({
         }
       }
     }
-  }
+  }, 
+  }, {
+    tabBarOptions: {
+      style: {
+        borderTopColor: '#2FA8F8'
+      }
+    }
   });
 
   const AppDrawer = createDrawerNavigator({
