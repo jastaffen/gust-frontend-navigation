@@ -6,17 +6,17 @@ Gust
 
 Watch the Demo: https://youtu.be/QHwTNesGLOA
 
-    Retrieves artists, albums, and track data using the Spotify Web API.
+    1.) Retrieves artists, albums, and track data using the Spotify Web API.
 
-    Retrieves upcoming Shows data from the SongKick API.
+    2.) Retrieves upcoming Shows data from the SongKick API.
 
-    Optimizes React Native Code by using up-to-date syntactical additions such as React Hooks.
+    3.) Optimizes React Native Code by using up-to-date syntactical additions such as React Hooks.
 
-    Employs domain modeling for users, track voting and followed artists—all of which is managed through the Rails API, and stored and organized using Postgresql.
+    4.) Employs domain modeling for users, track voting and followed artists—all of which is managed through the Rails API,           and stored and organized using Postgresql.
 
-    Applies a seem-less UI through the React Navigation library
+    5.) Applies a seem-less UI through the React Navigation library
 
-    Utilizes client-side global state data storage uses Redux
+    6.) Utilizes client-side global state data storage uses Redux
 
 Technologies:
 
