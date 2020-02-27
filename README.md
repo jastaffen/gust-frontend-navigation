@@ -20,12 +20,18 @@ Watch the Demo: https://youtu.be/QHwTNesGLOA
 
 Technologies:
 
-  React Native ^0.1.6
-  HTML/CSS3/JS 
-  Redux ^4.0.5
-  React Navigation V4
-  Ruby on Rails 6.0.2.1
-  postgres (PostgreSQL) 12.0
+  - React Native ^0.1.6
+  
+  - HTML/CSS3/JS 
+  
+  - Redux ^4.0.5
+  
+  - React Navigation V4
+  
+  - Ruby on Rails 6.0.2.1
+  
+  - postgres (PostgreSQL) 12.0
+  
   
 META
 
