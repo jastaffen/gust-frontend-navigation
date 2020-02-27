@@ -35,7 +35,7 @@ Technologies:
   
 META
 
-  LinkedIn - https://www.linkedin.com/in/jack-n-staffen-014510184/
+  LinkedIn - www.linkedin.com/in/jack-n-staffen
 
   Github Repos -
 
