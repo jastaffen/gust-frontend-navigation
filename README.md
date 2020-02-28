@@ -41,4 +41,4 @@ META
 
     frontend: https://github.com/jastaffen/gust-frontend-navigation
 
-    backend: https://github.com/jastaffen/gust-backen
+    backend: https://github.com/jastaffen/gust-backend
